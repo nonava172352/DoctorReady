@@ -31,7 +31,6 @@ const LoginScreens = () => {
         // value={username}
       />
       <TextInput
-      
         style={styles.input}
         // onChangeText={password}
         value={password}
