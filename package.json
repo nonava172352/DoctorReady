@@ -20,7 +20,8 @@
     "react-native-check-box": "^2.1.7",
     "react-native-paper": "^4.10.0",
     "react-native-safe-area-context": "^3.3.2",
-    "react-native-screens": "^3.9.0"
+    "react-native-screens": "^3.9.0",
+    "react-native-search-filter": "^0.1.5"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
