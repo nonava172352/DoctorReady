@@ -1,5 +1,5 @@
 import React from 'react';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -13,11 +13,8 @@ import {
   FlatList,
   StatusBar,
 } from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import CheckBox from '@react-native-community/checkbox';
 import {Searchbar} from 'react-native-paper';
-import { white } from 'react-native-paper/lib/typescript/styles/colors';
+import DiseaseList from '../DiseaseList.json'
 
 const DATA = [
   {
@@ -37,25 +34,75 @@ const DATA = [
     title: 'Non kub',
   },
 ];
-const Item = ({item}) => (
-  <TouchableOpacity
-    style={{
-      marginLeft: 12,
-      marginBottom: 7,
-      backgroundColor: 'grey',
-      width: 385,
-    }}>
-    <Text style={{fontSize: 17, padding: 7, color: "white"}}>{item.title}</Text>
-  </TouchableOpacity>
-);
+// const Item = ({item}) => (
+//   <TouchableOpacity
+//     style={{
+//       marginLeft: 12,
+//       marginBottom: 7,
+//       backgroundColor: 'grey',
+//       width: 385,
+//     }}>
+//     <Text style={{fontSize: 17, padding: 7, color: "white"}}>{item.title}</Text>
+//   </TouchableOpacity>
+// );
+
+
 
 const MainScreens = () => {
-  const [searchQuery, setSearchQuery] = React.useState('');
-  const onChangeSearch = query => setSearchQuery(query);
   const [selectedId, setSelectedId] = useState(null);
 
-  const renderItem = ({item}) => {
-    return <Item item={item} />;
+  const [search, setSearch] = useState('');
+  const [filteredDataSource, setFilteredDataSource] = useState([]);
+  const [masterDataSource, setMasterDataSource] = useState([]);
+  console.log(DiseaseList)
+  
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/posts')
+      .then((response) => response.json())
+      .then((responseJson) => {
+        setFilteredDataSource(responseJson);
+        setMasterDataSource(responseJson);
+
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  const searchFilterFunction = (text) => {
+    if (text) {
+      const newData = masterDataSource.filter(function (item) {
+        const itemData = item.title
+          ? item.title.toUpperCase()
+          : ''.toUpperCase();
+        const textData = text.toUpperCase();
+        return itemData.indexOf(textData) > -1;
+      });
+      setFilteredDataSource(newData);
+      setSearch(text);
+    } else {
+      setFilteredDataSource(masterDataSource);
+      setSearch(text);
+    }
+  };
+
+  const ItemView = ({ item }) => {
+    return (
+      <TouchableOpacity
+      style={{
+        marginLeft: 12,
+        marginBottom: 7,
+        backgroundColor: 'grey',
+        width: 385,
+      }}>
+
+      <Text style={{fontSize: 17, padding: 7, color: "white"}} onPress={() => getItem(item)}>
+        {item.id}
+        {'.'}
+        {item.title.toUpperCase()}
+      </Text>
+      </TouchableOpacity>
+    );
   };
 
   return (
@@ -66,17 +113,19 @@ const MainScreens = () => {
       <View style={{alignItems: 'center', marginBottom: 12}}>
         <Searchbar
           style={{width: 370}}
-          placeholder="ค้นหา"
-          onChangeText={onChangeSearch}
-          value={searchQuery}
+          placeholder="ค้นหาโรค"
+          onChangeText={(text) => searchFilterFunction(text)}
+          value={search}
         />
       </View>
       <View>
         <FlatList
-          data={DATA}
-          renderItem={renderItem}
+          // data={DATA}
+          // renderItem={renderItem}
           // keyExtractor={(item) => item.id}
           // extraData={selectedId}
+          data={filteredDataSource}
+          renderItem={ItemView}
         />
       </View>
     </SafeAreaView>

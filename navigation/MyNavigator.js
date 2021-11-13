@@ -4,7 +4,7 @@ import {AntDesign} from '@expo/vector-icons';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import LoginScreens from '../screens/LoginScreens';
-import SignupScreens from '../screens/LoginScreens';
+import SignupScreens from '../screens/SignupScreens';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import MainScreens from '../notlogin/MainScreens';
 import HospitalmapScreens from '../notlogin/HospitalmapScreens';
