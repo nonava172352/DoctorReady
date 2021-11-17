@@ -113,7 +113,7 @@ const MainScreens = () => {
       <View style={{alignItems: 'center', marginBottom: 12}}>
         <Searchbar
           style={{width: 370}}
-          placeholder="ค้นหาโรค"
+          placeholder="ค้นหาโรคค"
           onChangeText={(text) => searchFilterFunction(text)}
           value={search}
         />
