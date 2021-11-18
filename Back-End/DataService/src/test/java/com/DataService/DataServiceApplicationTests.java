@@ -1,10 +1,10 @@
-package com.BackEnd;
+package com.DataService;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BackEndApplicationTests {
+class DataServiceApplicationTests {
 
 	@Test
 	void contextLoads() {

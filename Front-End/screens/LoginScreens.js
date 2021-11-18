@@ -20,6 +20,7 @@ const LoginScreens = () => {
   const [password, SetPassword] = React.useState('');
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   console.log(username)
+
   return (
     
     <SafeAreaView style={styles.container}>
@@ -33,7 +34,8 @@ const LoginScreens = () => {
       <TextInput
         style={styles.input}
         // onChangeText={password}
-        value={password}
+        secureTextEntry={true}
+        onChangeText={password}
         placeholder="Password"
       />
       
@@ -50,7 +52,7 @@ const LoginScreens = () => {
       <View style={{width: 70, marginBottom: 12, borderRadius: 50}}>
         <Button
           title="Login"
-          onPress={() => Alert.alert('Simple Button pressed')}
+          onPress={() => {Alert.alert('Simple Button pressed')}}
         />
       </View>
       <View style={{width: 100}}>

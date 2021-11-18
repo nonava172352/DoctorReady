@@ -1,13 +1,13 @@
-package com.BackEnd;
+package com.DataService;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BackEndApplication {
+public class DataServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BackEndApplication.class, args);
+		SpringApplication.run(DataServiceApplication.class, args);
 	}
 
 }

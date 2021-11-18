@@ -12,6 +12,7 @@ import {
   TouchableOpacity,
   Alert,
 } from 'react-native';
+import { firebaseConfig } from "../firebase"
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import CheckBox from '@react-native-community/checkbox';
@@ -66,7 +67,7 @@ const SignupScreens = () => {
 
       <TextInput
         style={styles.input}
-        // onChangeText={password}
+        onChangeText={password}
 
         placeholder="อายุ"
       />
