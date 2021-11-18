@@ -25,9 +25,9 @@ function NotloginNavigator() {
       <NotloginBottomtab.Screen
         name="หน้าหลัก"
         component={MainScreens}></NotloginBottomtab.Screen>
-      <NotloginBottomtab.Screen
+      {/* <NotloginBottomtab.Screen
         name="โรงพยาบาลใกล้ฉัน"
-        component={HospitalmapScreens}></NotloginBottomtab.Screen>
+        component={HospitalmapScreens}></NotloginBottomtab.Screen> */}
     </NotloginBottomtab.Navigator>
   );
 }
