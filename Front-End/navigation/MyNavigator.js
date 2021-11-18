@@ -8,6 +8,9 @@ import SignupScreens from '../screens/SignupScreens';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import MainScreens from '../notlogin/MainScreens';
 import HospitalmapScreens from '../notlogin/HospitalmapScreens';
+import Diseaserecord from '../alreadylogin/Diseaserecord';
+import Searchguess from '../alreadylogin/Searchguess';
+import SearchDetail from '../alreadylogin/SearchDetail';
 
 const MainNavigator = createNativeStackNavigator();
 
@@ -25,9 +28,9 @@ function NotloginNavigator() {
       <NotloginBottomtab.Screen
         name="หน้าหลัก"
         component={MainScreens}></NotloginBottomtab.Screen>
-      <NotloginBottomtab.Screen
+      {/* <NotloginBottomtab.Screen
         name="โรงพยาบาลใกล้ฉัน"
-        component={HospitalmapScreens}></NotloginBottomtab.Screen>
+        component={HospitalmapScreens}></NotloginBottomtab.Screen> */}
     </NotloginBottomtab.Navigator>
   );
 }
@@ -41,7 +44,7 @@ export default function MyNavigator() {
         }}>
         <MainNavigator.Screen
           name="Notlog"
-          component={NotloginNavigator}>
+          component={SearchDetail}>
 
           </MainNavigator.Screen>
       </MainNavigator.Navigator>

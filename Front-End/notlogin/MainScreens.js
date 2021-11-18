@@ -93,7 +93,7 @@ const MainScreens = () => {
         marginLeft: 12,
         marginBottom: 7,
         backgroundColor: 'grey',
-        width: 385,
+        width: 370,
       }}>
 
       <Text style={{fontSize: 17, padding: 7, color: "white"}} onPress={() => getItem(item)}>
@@ -113,7 +113,7 @@ const MainScreens = () => {
       <View style={{alignItems: 'center', marginBottom: 12}}>
         <Searchbar
           style={{width: 370}}
-          placeholder="ค้นหาโรค ggg"
+          placeholder="ค้นหาโรค"
           onChangeText={(text) => searchFilterFunction(text)}
           value={search}
         />
