@@ -1,6 +1,6 @@
 package com.DataService.command;
 
-import com.DataService.event.UserCreatedEvent;
+import com.DataService.core.event.UserCreatedEvent;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.modelling.command.AggregateIdentifier;
@@ -11,7 +11,7 @@ import org.springframework.beans.BeanUtils;
 @Aggregate
 public class UserAggregate {
     @AggregateIdentifier
-    private String UserID;
+    private String userID;
     private String username;
     private String password;
     private String email;
@@ -37,7 +37,7 @@ public class UserAggregate {
     }
     @EventSourcingHandler
     public void on(UserCreatedEvent userCreatedEvent){
-        this.UserID = userCreatedEvent.getUserID();
+        this.userID = userCreatedEvent.getUserID();
         this.username = userCreatedEvent.getUsername();
         this.password = userCreatedEvent.getPassword();
         this.email = userCreatedEvent.getEmail();

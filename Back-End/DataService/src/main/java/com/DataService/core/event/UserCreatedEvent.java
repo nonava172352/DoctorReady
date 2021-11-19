@@ -1,10 +1,10 @@
-package com.DataService.event;
+package com.DataService.core.event;
 
 import lombok.Data;
 
 @Data
 public class UserCreatedEvent {
-    private String UserID;
+    private String userID;
     private String username;
     private String password;
     private String email;

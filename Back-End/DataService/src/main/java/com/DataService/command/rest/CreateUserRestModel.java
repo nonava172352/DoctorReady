@@ -1,9 +1,10 @@
-package com.DataService.rest;
+package com.DataService.command.rest;
 
 import lombok.Data;
 
 @Data
 public class CreateUserRestModel {
+    private String userID;
     private String username;
     private String password;
     private String email;

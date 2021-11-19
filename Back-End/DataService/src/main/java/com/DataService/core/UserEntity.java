@@ -15,7 +15,7 @@ public class UserEntity implements Serializable {
     private static final long serialVersionUID = -6677240663737728071L;
     @Id
     @Column(unique = true)
-    private String UserID;
+    private String userID;
     private String username;
     private String password;
     private String email;

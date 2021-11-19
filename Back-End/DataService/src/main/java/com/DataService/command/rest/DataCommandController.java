@@ -1,4 +1,4 @@
-package com.DataService.rest;
+package com.DataService.command.rest;
 
 import com.DataService.command.CreateUserCommand;
 import org.axonframework.commandhandling.gateway.CommandGateway;
@@ -7,20 +7,22 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
-@RestController
-@RequestMapping("/Register")
-public class DataController {
+//@RestController
+//@RequestMapping("/Register")
+public class DataCommandController {
     private final CommandGateway commandGateway;
 
     @Autowired
-    public DataController(CommandGateway commandGateway) {
+    public DataCommandController(CommandGateway commandGateway) {
         this.commandGateway = commandGateway;
     }
 
+
+
     @PostMapping
-    public String createUsers(@RequestBody CreateUserRestModel model){
+    public String createUsers(CreateUserRestModel model){
         CreateUserCommand command = CreateUserCommand.builder()
-                .UserID(UUID.randomUUID().toString())
+                .userID(UUID.randomUUID().toString())
                 .username(model.getUsername())
                 .password(model.getPassword())
                 .email(model.getEmail())
