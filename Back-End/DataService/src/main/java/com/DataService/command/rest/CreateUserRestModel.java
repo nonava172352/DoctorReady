@@ -2,8 +2,10 @@ package com.DataService.command.rest;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 @Data
-public class CreateUserRestModel {
+public class CreateUserRestModel implements Serializable {
     private String userID;
     private String username;
     private String password;
@@ -13,4 +15,6 @@ public class CreateUserRestModel {
     private Float height;
     private Integer age;
     private String detail;
+
+
 }

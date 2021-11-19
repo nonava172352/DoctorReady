@@ -17,7 +17,7 @@ public class UserQueryController {
 
     @Autowired
     QueryGateway queryGateway;
-    @GetMapping
+//    @GetMapping
     public List<UserRestModel> getUsers(){
         FindUserQuery findUserQuery = new FindUserQuery();
         List<UserRestModel> users = queryGateway

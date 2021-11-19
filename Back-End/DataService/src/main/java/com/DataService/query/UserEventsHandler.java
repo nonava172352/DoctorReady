@@ -14,13 +14,11 @@ public class UserEventsHandler {
 
     public UserEventsHandler(UserRepository userRepository){
         this.userRepository = userRepository;
-        System.out.println(this.userRepository);
 
     }
 
     @EventHandler
     public void on(UserCreatedEvent event){
-        System.out.println(event);
         UserEntity userEntity = new UserEntity();
         BeanUtils.copyProperties(event, userEntity);
         userRepository.save(userEntity);
