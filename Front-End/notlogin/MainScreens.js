@@ -14,26 +14,7 @@ import {
   StatusBar,
 } from 'react-native';
 import {Searchbar} from 'react-native-paper';
-import DiseaseList from '../DiseaseList.json'
 
-const DATA = [
-  {
-    id: 1,
-    title: 'Fluke gay',
-  },
-  {
-    id: 2,
-    title: 'Art thai',
-  },
-  {
-    id: 3,
-    title: 'Q thai',
-  },
-  {
-    id: 4,
-    title: 'Non kub',
-  },
-];
 // const Item = ({item}) => (
 //   <TouchableOpacity
 //     style={{
@@ -54,7 +35,7 @@ const MainScreens = () => {
   const [search, setSearch] = useState('');
   const [filteredDataSource, setFilteredDataSource] = useState([]);
   const [masterDataSource, setMasterDataSource] = useState([]);
-  console.log(DiseaseList)
+ 
   
   useEffect(() => {
     fetch('https://jsonplaceholder.typicode.com/posts')
@@ -68,6 +49,8 @@ const MainScreens = () => {
         console.error(error);
       });
   }, []);
+
+
 
   const searchFilterFunction = (text) => {
     if (text) {

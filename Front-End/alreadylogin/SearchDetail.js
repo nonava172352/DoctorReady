@@ -14,11 +14,10 @@ import {
   StatusBar,
 } from 'react-native';
 import {Searchbar} from 'react-native-paper';
-import DiseaseList from '../DiseaseList.json'
+
 
 const SearchDetail = () => {
   const [selectedId, setSelectedId] = useState(null);
-
   const [search, setSearch] = useState('');
   
 

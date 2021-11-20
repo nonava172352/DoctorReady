@@ -14,7 +14,7 @@ import {
   StatusBar,
 } from 'react-native';
 import {Searchbar} from 'react-native-paper';
-import DiseaseList from '../DiseaseList.json'
+
 
 const Searchguess = () => {
   const [selectedId, setSelectedId] = useState(null);
@@ -27,13 +27,13 @@ const Searchguess = () => {
       <View style={styles.font}>
         <Text style={{fontSize: 35}}>คาดคะเนโรคเบื้องต้น</Text>
       </View>
-      <View style={{alignItems: 'center',flexDirection:'row',justifyContent: "center"}}>
+      <View style={{alignItems: 'center',flexDirection:'row',justifyContent: "center",fontSize: 1}}>
         <Searchbar
           style={{width: 300}}
           placeholder="โปรดใส่อาการอย่างน้อย 1 อาการ"
           value={search}
         />
-        <View style={{height: 44,justifyContent: "center"}}>
+        <View style={{height: 44,justifyContent: "center", marginLeft: 10}}>
         <Button
           title="+"
           color="green"

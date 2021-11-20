@@ -23,7 +23,7 @@ const Diseaserecord = () => {
   console.log(selectedLanguage);
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={{fontSize: 50, paddingBottom: 20}}>บันทึกอาการ</Text>
+      <Text style={{fontSize: 35, paddingBottom: 20, paddingTop: 20}}>บันทึกอาการ</Text>
       <View>
         <Text style={styles.font}>หัวข้ออาการ</Text>
         <TextInput style={styles.input} />
@@ -53,9 +53,10 @@ const Diseaserecord = () => {
         <Text style={styles.font}>อาการเพิ่มเติม</Text>
         <TextInput style={styles.input} />
       </View>
-      <View style={{width: 70, marginBottom: 12, borderRadius: 50}}>
+      <View style={{width: 70, marginTop: 12, borderRadius: 50}}>
         <Button
-          title="Login"
+          title="บันทึก"
+          color="green"
           onPress={() => Alert.alert('Simple Button pressed')}
         />
       </View>
