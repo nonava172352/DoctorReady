@@ -14,11 +14,15 @@ import {
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import CheckBox from '@react-native-community/checkbox';
-
+import axios from 'axios';
+import { useSelector, useDispatch } from "react-redux";
+import { diseActionSet } from "../store/action/actions"
 const LoginScreens = (navigation) => {
   const [username, SetUsername] = React.useState('');
   const [password, SetPassword] = React.useState('');
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.redu.dise)
   console.log(username)
 
   return (
@@ -52,15 +56,23 @@ const LoginScreens = (navigation) => {
       <View style={{width: 70, marginBottom: 12, borderRadius: 50}}>
         <Button
           title="Login"
-          onPress={() => {Alert.alert('Simple Button pressed')}}
+          onPress={() => {Alert.alert('Simple Button pressed')
+          axios({method:"get", url:"http://192.168.1.38:8082/disease"}).then((response) =>{
+            dispatch(diseActionSet(response.data))
+            // console.log(response.data);
+
+            
+          })
+        }}
         />
       </View>
       <View style={{width: 100}}>
         <Button
           title="Sign Up"
-          // onPress={() => {
-          //   navigation.navigate("Signup")
-          // }}
+          onPress={() => {
+            
+            console.log(data)
+          }}
         />
       </View>
       <TouchableOpacity>

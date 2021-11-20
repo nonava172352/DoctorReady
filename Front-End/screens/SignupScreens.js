@@ -1,5 +1,7 @@
 import React from 'react';
 import {useState} from 'react';
+import { useSelector, useDispatch } from "react-redux";
+import { diseActionSet } from "../store/action/actions"
 import {
   SafeAreaView,
   StyleSheet,
@@ -81,7 +83,10 @@ const SignupScreens = () => {
       <View style={{width: 70, justifyContent: 'center', alignItems: 'center'}}>
         <Button
           title="Signup"
-          onPress={() => Alert.alert('Simple Button pressed')}
+        //   onPress={() => {Alert.alert('Simple Button pressed')
+        //   const data = useSelector((state) => state.redu.dise)
+        //   console.log(data)
+        // }
         />
       </View>
       </ScrollView>

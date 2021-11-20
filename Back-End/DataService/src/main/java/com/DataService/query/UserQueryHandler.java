@@ -22,13 +22,14 @@ public class UserQueryHandler {
     @QueryHandler
     List<UserRestModel> findUsers(FindUserQuery query){
         List<UserRestModel> userRest = new ArrayList<>();
-        List<UserEntity> storedUser = userRepository.findAll();
+        List<UserEntity> storedUser = (List<UserEntity>) userRepository.findByEmail(query.getEmail());
+        System.out.println("findUsers");
         for (UserEntity userEntity : storedUser){
             UserRestModel userRestModel = new UserRestModel();
             BeanUtils.copyProperties(userEntity, userRestModel);
             userRest.add(userRestModel);
-
         }
+
         return userRest;
     }
 

@@ -23,13 +23,15 @@ public class Requestandreply {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public void Login(@RequestBody LoginRestModel model){
-//        String m = (String) rabbitTemplate.convertSendAndReceive("Direct", "login", );
-        System.out.println(model.getUsername());
+    public String Login(@RequestBody LoginRestModel model){
+        System.out.println("login");
+        String m = (String) rabbitTemplate.convertSendAndReceive("Direct" ,"login", model);
+        return  m;
     }
 
     @GetMapping(value = "/disease")
     public ArrayList getDisease(){
+        System.out.println("/disease");
         return new ReadFileJson().getReadFileJson();
 
     }

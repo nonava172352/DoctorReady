@@ -13,9 +13,10 @@ import {
   FlatList,
   StatusBar,
 } from 'react-native';
-import axios from "axios"
+import { useSelector, useDispatch } from "react-redux";
 import {Searchbar} from 'react-native-paper';
-
+import axios from "axios"
+import { diseActionSet } from "../store/action/actions"
 // const Item = ({item}) => (
 //   <TouchableOpacity
 //     style={{
@@ -36,15 +37,27 @@ const MainScreens = () => {
   const [search, setSearch] = useState('');
   const [filteredDataSource, setFilteredDataSource] = useState([]);
   const [masterDataSource, setMasterDataSource] = useState([]);
- 
+  const dispatch = useDispatch()
   
-  useEffect(
-    axios({
-      method:'get',
-      url:"http://localhost:8082/disease",}).then((response) => {
-        console.log(response.data)
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/posts')
+      .then((response) => response.json())
+      .then((responseJson) => {
+        setFilteredDataSource(responseJson);
+        setMasterDataSource(responseJson);
+
       })
-    , []);
+      .catch((error) => {
+        console.error(error);
+      });
+      axios({method:"get", url:"http://192.168.1.38:8082/disease"}).then((response) =>{
+        dispatch(diseActionSet(response.data))
+        const data = useSelector((state) => state.redu.dise)
+        console.log(data)
+        
+      })
+
+  }, []);
 
 
 
