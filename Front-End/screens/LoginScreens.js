@@ -15,7 +15,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import CheckBox from '@react-native-community/checkbox';
 
-const LoginScreens = () => {
+const LoginScreens = (navigation) => {
   const [username, SetUsername] = React.useState('');
   const [password, SetPassword] = React.useState('');
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
@@ -58,7 +58,9 @@ const LoginScreens = () => {
       <View style={{width: 100}}>
         <Button
           title="Sign Up"
-          onPress={() => Alert.alert('Simple Button pressed')}
+          // onPress={() => {
+          //   navigation.navigate("Signup")
+          // }}
         />
       </View>
       <TouchableOpacity>
