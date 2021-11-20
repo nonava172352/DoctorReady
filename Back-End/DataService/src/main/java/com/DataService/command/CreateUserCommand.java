@@ -4,11 +4,13 @@ import lombok.Builder;
 import lombok.Data;
 import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
+import java.io.Serializable;
+
 @Builder
 @Data
-public class CreateUserCommand {
+public class CreateUserCommand implements Serializable{
     @TargetAggregateIdentifier
-    private final String UserID;
+    private final String userID;
     private final String username;
     private final String password;
     private final String email;

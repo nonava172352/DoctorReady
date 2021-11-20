@@ -1,9 +1,10 @@
-package com.DataService.rest;
+package com.DataService.core.event;
 
 import lombok.Data;
 
 @Data
-public class CreateUserRestModel {
+public class UserCreatedEvent {
+    private String userID;
     private String username;
     private String password;
     private String email;
