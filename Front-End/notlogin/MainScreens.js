@@ -13,6 +13,7 @@ import {
   FlatList,
   StatusBar,
 } from 'react-native';
+import axios from "axios"
 import {Searchbar} from 'react-native-paper';
 import DiseaseList from '../DiseaseList.json'
 
@@ -56,18 +57,13 @@ const MainScreens = () => {
   const [masterDataSource, setMasterDataSource] = useState([]);
   console.log(DiseaseList)
   
-  useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/posts')
-      .then((response) => response.json())
-      .then((responseJson) => {
-        setFilteredDataSource(responseJson);
-        setMasterDataSource(responseJson);
-
+  useEffect(
+    axios({
+      method:'get',
+      url:"http://localhost:8082/disease",}).then((response) => {
+        console.log(response.data)
       })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
+    , []);
 
   const searchFilterFunction = (text) => {
     if (text) {

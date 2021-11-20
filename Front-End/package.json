@@ -25,7 +25,9 @@
     "react-native-permissions": "^3.1.0",
     "react-native-safe-area-context": "^3.3.2",
     "react-native-screens": "^3.9.0",
-    "react-native-search-filter": "^0.1.5"
+    "react-native-search-filter": "^0.1.5",
+    "react-redux": "^7.2.6",
+    "redux": "^4.1.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
