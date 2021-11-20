@@ -22,10 +22,12 @@ public class Requestandreply {
         return m;
     }
 
-//    @RequestMapping(value = "/login", method = RequestMethod.POST)
-//    public String Login(@RequestBody Object model){
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public void Login(@RequestBody LoginRestModel model){
 //        String m = (String) rabbitTemplate.convertSendAndReceive("Direct", "login", );
-//    }
+        System.out.println(model.getUsername());
+    }
+
     @GetMapping(value = "/disease")
     public ArrayList getDisease(){
         return new ReadFileJson().getReadFileJson();

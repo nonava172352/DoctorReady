@@ -60,4 +60,22 @@ public class ReadFileJson {
         False.add("False");
         return False;
     }
+    public ArrayList getArkan(){
+        JSONParser jsonParser = new JSONParser();
+        ArrayList arkan = new ArrayList();
+        try {
+            FileReader reader = new FileReader("C:\\Users\\flukg\\Mobile Project\\DoctorReady\\Back-End\\DataService\\src\\main\\java\\com\\DataService\\allarkarn.json");
+            Object obj = jsonParser.parse(reader);
+            JSONObject jsonOBJ = (JSONObject) obj;
+            arkan = (ArrayList) jsonOBJ.get("arkan");
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return arkan;
+    }
 }
