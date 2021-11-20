@@ -9,13 +9,13 @@ import javax.persistence.Table;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users" )
 @Data
 public class UserEntity implements Serializable {
     private static final long serialVersionUID = -6677240663737728071L;
     @Id
     @Column(unique = true)
-    private String UserID;
+    private String userID;
     private String username;
     private String password;
     private String email;
@@ -24,4 +24,6 @@ public class UserEntity implements Serializable {
     private Float height;
     private Integer age;
     private String detail;
+
+
 }

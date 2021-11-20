@@ -5,21 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="54c6ee10-6fab-42a5-b9de-eaf15ee8c2f4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/DataService/src/main/java/com/DataService/rest/DataController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/BackEndApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/backend/BackEndApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/screens/LoginScreens.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/screens/LoginScreens.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front-End/screens/SignupScreens.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Front-End/screens/SignupScreens.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,6 +61,7 @@
       <updated>1637221508498</updated>
       <workItem from="1637221510688" duration="230000" />
       <workItem from="1637221836772" duration="1011000" />
+      <workItem from="1637374200152" duration="655000" />
     </task>
     <servers />
   </component>
