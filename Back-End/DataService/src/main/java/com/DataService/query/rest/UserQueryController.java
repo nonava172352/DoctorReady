@@ -19,11 +19,12 @@ public class UserQueryController {
 
 //    @RequestMapping(value = "/login", method = RequestMethod.POST)
     @RabbitListener(queues = "LoginQueue")
-    public UserRestModel getUsers(LoginRestModel model){
+    public Object getUsers(LoginRestModel model){
         FindUserQuery findUserQuery = new FindUserQuery(model);
-        List<UserRestModel> users = queryGateway
-                .query(findUserQuery, ResponseTypes.multipleInstancesOf(UserRestModel.class)).join();
-        return users.get(0);
+            List<UserRestModel> users = queryGateway
+                    .query(findUserQuery, ResponseTypes.multipleInstancesOf(UserRestModel.class)).join();
+            return users.get(0);
+
     }
 //    public List<UserRestModel> AuthLogin(){
 //        FindUserQuery findUserQuery = new FindUserQuery();

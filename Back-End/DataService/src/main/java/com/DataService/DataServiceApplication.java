@@ -11,7 +11,7 @@ public class DataServiceApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(DataServiceApplication.class, args);
-		System.out.println("dsads");
+		System.out.println("Start");
 	}
 
 }
