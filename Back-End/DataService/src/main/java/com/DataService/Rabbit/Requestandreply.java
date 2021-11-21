@@ -4,11 +4,13 @@ import com.DataService.ReadFileJson;
 import com.DataService.command.CreateUserCommand;
 import com.DataService.command.rest.CreateUserRestModel;
 import com.DataService.command.rest.DataCommandController;
+import com.DataService.query.rest.UserRestModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 public class Requestandreply {
@@ -23,10 +25,11 @@ public class Requestandreply {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String Login(@RequestBody LoginRestModel model){
+    public Object Login(@RequestBody LoginRestModel model){
         System.out.println("login");
-        String m = (String) rabbitTemplate.convertSendAndReceive("Direct" ,"login", model);
-        return  m;
+        List<UserRestModel> userRest = new ArrayList<>();
+        userRest.add((UserRestModel) rabbitTemplate.convertSendAndReceive("Direct" ,"login", model));
+        return userRest.get(0);
     }
 
     @GetMapping(value = "/disease")

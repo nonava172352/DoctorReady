@@ -2,8 +2,10 @@ package com.DataService.query.rest;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 @Data
-public class UserRestModel {
+public class UserRestModel implements Serializable {
     private String userID;
     private String username;
     private String password;

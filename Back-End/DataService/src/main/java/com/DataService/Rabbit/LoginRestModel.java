@@ -4,7 +4,7 @@ import lombok.Data;
 
 import java.io.Serializable;
 @Data
-public class LoginRestModel  {
+public class LoginRestModel implements Serializable {
     private String email;
     private String password;
 
