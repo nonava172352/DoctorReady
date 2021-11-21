@@ -14,10 +14,18 @@ import SearchDetail from '../alreadylogin/SearchDetail';
 import MainScreensLogin from '../alreadylogin/MainScreens';
 import Allsearch from '../alreadylogin/Allsearch';
 import PersonalInfo from '../alreadylogin/PersonalInfo';
+import DiseaseDetailsScreens from '../notlogin/DiseaseDetailsScreens';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import Disease from '../component/Disease';
+import Sympton from '../component/Symptom';
+import Prevent from '../component/Prevent';
+import Cause from '../component/Cause';
 
 const MainNavigator = createNativeStackNavigator();
 
 const Bottomtab = createBottomTabNavigator();
+
+const TopTab = createMaterialTopTabNavigator();
 
 function NotloginNavigator() {
   return (
@@ -27,13 +35,13 @@ function NotloginNavigator() {
       }}>
       <Bottomtab.Screen
         name="Login"
-        component={LoginScreens}></Bottomtab.Screen>
+        component={LoginScreens}/>
       <Bottomtab.Screen
         name="หน้าหลัก"
-        component={MainScreens}></Bottomtab.Screen>
+        component={MainScreens}/>
       <Bottomtab.Screen
         name="โรงพยาบาลใกล้ฉัน"
-        component={HospitalmapScreens}></Bottomtab.Screen>
+        component={HospitalmapScreens}/>
     </Bottomtab.Navigator>
   );
 }
@@ -45,17 +53,46 @@ function loginNavigator() {
       }}>
       <Bottomtab.Screen
         name="คาดคะเนโรค"
-        component={Searchguess}></Bottomtab.Screen>
+        component={Searchguess}/>
       <Bottomtab.Screen
         name="หน้าหลัก"
-        component={MainScreens}></Bottomtab.Screen>
+        component={MainScreens}/>
       <Bottomtab.Screen
         name="โรงพยาบาลใกล้ฉัน"
-        component={HospitalmapScreens}></Bottomtab.Screen>
+        component={HospitalmapScreens}/>
       <Bottomtab.Screen
         name="ข้อมูลส่วนตัว"
-        component={PersonalInfo}></Bottomtab.Screen>
+        component={PersonalInfo}/>
     </Bottomtab.Navigator>
+  );
+}
+
+function ToptabNavigator() {
+  return (
+    <TopTab.Navigator
+      screenOptions={{
+        headerShown: false,
+        tabBarActiveTintColor: '#FFFFFF',
+        tabBarLabelStyle: { fontSize: 10, fontWeight: 'bold' },
+        tabBarStyle: { backgroundColor: '#01B3CD' }
+      }}>
+      <TopTab.Screen
+        name="รายละเอียดโรค"
+        component={Disease}
+        options={{ tabBarLabel: 'รายละเอียดโรค' }}/>
+      <TopTab.Screen
+        name="อาการ"
+        component={Sympton}
+        options={{ tabBarLabel: 'อาการ' }}/>
+      <TopTab.Screen
+        name="สาเหตุ"
+        component={Cause}
+        options={{ tabBarLabel: 'สาเหตุ' }}/>
+      <TopTab.Screen
+        name="ป้องกันโรค"
+        component={Prevent}
+        options={{ tabBarLabel: 'หลักการป้องกันโรค' }}/>
+    </TopTab.Navigator>
   );
 }
 
@@ -67,7 +104,6 @@ function signup () {
         }}
         name="Signup"
         component={SignupScreens}>
-          
     </MainNavigator.Navigator>
   )
 }
@@ -82,7 +118,7 @@ export default function MyNavigator() {
         }}>
         <MainNavigator.Screen
           name="Notlog"
-          component={NotloginNavigator}>
+          component={ToptabNavigator}>
 
           </MainNavigator.Screen>
       </MainNavigator.Navigator>
