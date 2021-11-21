@@ -10,6 +10,7 @@ import {
   Button,
   TouchableOpacity,
   Alert,
+  ScrollView
 } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -24,7 +25,7 @@ const Diseaserecord = () => {
   return (
     <SafeAreaView style={styles.container}>
       <Text style={{fontSize: 35, paddingBottom: 20, paddingTop: 20}}>บันทึกอาการ</Text>
-      <View>
+      <ScrollView>
         <Text style={styles.font}>หัวข้ออาการ</Text>
         <TextInput style={styles.input} />
 
@@ -52,14 +53,14 @@ const Diseaserecord = () => {
 
         <Text style={styles.font}>อาการเพิ่มเติม</Text>
         <TextInput style={styles.input} />
-      </View>
-      <View style={{width: 70, marginTop: 12, borderRadius: 50}}>
+      </ScrollView>
+      <ScrollView style={{width: 70, marginTop: 12}}>
         <Button
           title="บันทึก"
           color="green"
           onPress={() => Alert.alert('Simple Button pressed')}
         />
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -70,9 +71,12 @@ const styles = StyleSheet.create({
     marginLeft: 1,
     marginBottom: 10,
     marginTop: 10,
-    borderWidth: 0.5,
+    borderWidth: 1,
     padding: 10,
     width: 250,
+    borderStyle: 'solid',
+    borderColor: '#ccc',
+    borderRadius: 7
   },
   font: {
     fontSize: 17,

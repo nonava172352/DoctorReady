@@ -13,6 +13,7 @@ import Searchguess from '../alreadylogin/Searchguess';
 import SearchDetail from '../alreadylogin/SearchDetail';
 import MainScreensLogin from '../alreadylogin/MainScreens';
 import Allsearch from '../alreadylogin/Allsearch';
+import PersonalInfo from '../alreadylogin/PersonalInfo';
 
 const MainNavigator = createNativeStackNavigator();
 
@@ -48,12 +49,12 @@ function loginNavigator() {
       <Bottomtab.Screen
         name="หน้าหลัก"
         component={MainScreens}></Bottomtab.Screen>
-      {/* <Bottomtab.Screen
+      <Bottomtab.Screen
         name="โรงพยาบาลใกล้ฉัน"
-        component={HospitalmapScreens}></Bottomtab.Screen> */}
+        component={HospitalmapScreens}></Bottomtab.Screen>
       <Bottomtab.Screen
         name="ข้อมูลส่วนตัว"
-        component={Diseaserecord}></Bottomtab.Screen>
+        component={PersonalInfo}></Bottomtab.Screen>
     </Bottomtab.Navigator>
   );
 }
