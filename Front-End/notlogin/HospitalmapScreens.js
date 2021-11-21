@@ -12,11 +12,15 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function HospitalmapScreens() {
+export default function HospitalmapScreens(){
   baseURL =
-    'https://data.go.th/dataset/296f32c6-8c7e-4a54-ade0-0913d35d3168/resource/d132638d-a243-4829-aed8-10ed4fad917f/download/priv_hos.json';
+    'https://www.emergency.wa.gov.au/data/incident_FCAD.json';
   const [info, setInfo] = useState([]);
 
+  // const [locate, setLocate] = useState({
+  //   latitude: 0,
+  //   longitude: 0
+  // })
   // axios({
   //   method: 'get',
   //   url: 'https://data.go.th/dataset/296f32c6-8c7e-4a54-ade0-0913d35d3168/resource/d132638d-a243-4829-aed8-10ed4fad917f/download/priv_hos.json',
@@ -30,7 +34,15 @@ export default function HospitalmapScreens() {
     });
   }, []);
 
-  console.log(info);
+  // useEffect(() => {
+  //   navigator.geolocation.getCurrentPosition((posittion) => {
+  //     const newPos = {
+  //       latitude: posittion.coords.latitude,
+  //       longitude: posittion.coords.longitude,
+  //     };
+  //     setLocate(newPos)
+  //   }, (err) => {console.log(err)},options);
+  // }, []);
 
   // constructor(props) {
   //   super(props);
@@ -38,6 +50,7 @@ export default function HospitalmapScreens() {
 
   // }
 
+  // console.log(info[0])
   // render() {
   return (
     <View style={styles.container}>
@@ -45,33 +58,39 @@ export default function HospitalmapScreens() {
         provider={PROVIDER_GOOGLE} // remove if not using Google Maps
         style={styles.map}
         region={{
-          latitude: 13.623087059997333,
-          longitude: 100.434088091312154,
+          latitude: 13.646105758077482,
+          longitude: 100.43842155407962,
           latitudeDelta: 0.015,
           longitudeDelta: 0.0121,
         }}>
-        {/* <Marker
+        <Marker
             coordinate={{
-              latitude: 13.623087059997333,
-              longitude: 100.434088091312154,
+              latitude: 13.648220660953447, 
+              longitude: 100.42102633966263,
             }}
-            title={'google'}></Marker> */}
+            title={'google'}></Marker>
+        <Marker
+            coordinate={{
+              latitude: 13.627534802620785, 
+              longitude: 100.41776477342107,
+            }}
+            title={'google'}></Marker>
+         <Marker
+            coordinate={{
+              latitude: 13.661705862656046,
+              longitude: 100.43413348459167,
+            }}
+            title={'google'}></Marker>
 
-        {/* {info.features.map((item, index) => (
-          <Marker
+        {/* {info.map((item, index) => <Marker
             key={index}
             coordinate={{
-              latitude: item.geometry.coordinates[0],
-              longitude: item.geometry.coordinates[1],
+              latitude: item.geometry.coordinates[1],
+              longitude: item.geometry.coordinates[0],
             }}
-          />
-        ))} */}
+          />)} */}
       </MapView>
-      {/* {info.map((item) => (
-      <View><Text>{item}</Text></View>
-      ))} */}
-     
     </View>
   );
-  // }
-}
+  }
+// }

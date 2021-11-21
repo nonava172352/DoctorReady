@@ -1,0 +1,33 @@
+
+The directory Front-End has files that might be overwritten:
+
+  .buckconfig
+  .editorconfig
+  .eslintrc.js
+  .flowconfig
+  .prettierrc.js
+  .watchmanconfig
+  alreadylogin
+  android
+  App.js
+  app.json
+  assets
+  babel.config.js
+  cd
+  component
+  index.js
+  ios
+  metro.config.js
+  navigation
+  node_modules
+  notlogin
+  package-lock.json
+  package.json
+  react-native
+  README.md
+  screens
+  __tests__
+  {
+
+Try using a new directory name, or moving these files.
+
