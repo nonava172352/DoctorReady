@@ -85,9 +85,9 @@ const MainScreens = () => {
     if (text) {
       const newData = namedi.filter(function (item) {
         const itemData = item.disease
-          ? item.disease.toUpperCase()
-          : ''.toUpperCase();
-        const textData = text.toUpperCase();
+          // ? item.disease.toUpperCase()
+          // : ''.toUpperCase();
+        const textData = text;
         return itemData.indexOf(textData) > -1;
       });
       setFilteredDataSource(newData);
@@ -98,7 +98,7 @@ const MainScreens = () => {
     }
   };
 
-
+console.log(filteredDataSource)
 
   const ItemView = ({ item }) => {
     return (
@@ -111,9 +111,8 @@ const MainScreens = () => {
       }}>
 
       <Text style={{fontSize: 17, padding: 7, color: "white"}} onPress={() => getItem(item)}>
-        {item.id}
-        {'.'}
-        {item.title.toUpperCase()}
+        {item.disease}
+
       </Text>
       </TouchableOpacity>
     );
