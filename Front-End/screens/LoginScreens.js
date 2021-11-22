@@ -24,7 +24,9 @@ const LoginScreens = ({navigation}) => {
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.redu.user)
-
+  
+  
+  
   return (
     
     <SafeAreaView style={styles.container}>
@@ -81,11 +83,14 @@ const LoginScreens = ({navigation}) => {
         <Button
           title="Sign Up"
           onPress={() => {
+            // dispatch(userActionSet(['AASDAS']))
+            // console.log(user)
             return(
               navigation.navigate("Signup")
             )
             
           }}
+          
         />
       </View>
       <TouchableOpacity>

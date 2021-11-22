@@ -14,7 +14,7 @@ import {
   StatusBar,
 } from 'react-native';
 import { useSelector, useDispatch } from "react-redux";
-import {Searchbar} from 'react-native-paper';
+import {List, Searchbar} from 'react-native-paper';
 import axios from "axios"
 import { diseActionSet } from "../store/action/actions"
 import { listdi } from "../data/disease-data"
@@ -44,7 +44,10 @@ const MainScreens = () => {
 
   // console.log(masterDataSource)
   useEffect(() => {
+    setFilteredDataSource(listdi);
     setNamedi(listdi);
+    // setFilteredDataSource(listdi);
+    
     // fetch('https://jsonplaceholder.typicode.com/posts')
     //   .then((response) => response.json())
     //   .then((responseJson) => {
@@ -98,7 +101,7 @@ const MainScreens = () => {
     }
   };
 
-console.log(filteredDataSource)
+// console.log(filteredDataSource)
 
   const ItemView = ({ item }) => {
     return (

@@ -19,6 +19,8 @@ import Disease from '../component/Disease';
 import Sympton from '../component/Symptom';
 import Prevent from '../component/Prevent';
 import Cause from '../component/Cause';
+import { useSelector, useDispatch } from "react-redux";
+import { diseActionSet, userActionSet } from "../store/action/actions"
 
 const MainNavigator = createNativeStackNavigator();
 
@@ -26,7 +28,11 @@ const Bottomtab = createBottomTabNavigator();
 
 const TopTab = createMaterialTopTabNavigator();
 
+
+
 function NotloginNavigator() {
+  
+
   return (
     <Bottomtab.Navigator
     initialRouteName="หน้าหลัก"
@@ -125,6 +131,7 @@ function ToptabNavigator() {
 }
 
 function signup () {
+  
   return (
     <MainNavigator.Navigator
       screenOptions={{
@@ -144,7 +151,27 @@ function signup () {
 
 
 export default function MyNavigator() {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.redu.user);
+  dispatch(userActionSet())
+  console.log(user)
+  if (user != null) {
   return (
+    <NavigationContainer>
+      <MainNavigator.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}>
+        <MainNavigator.Screen
+          name="log"
+          component={loginNavigator}>
+          </MainNavigator.Screen>
+      </MainNavigator.Navigator>
+    </NavigationContainer>
+  );
+  }
+  else {
+    return (
     <NavigationContainer>
       <MainNavigator.Navigator
         screenOptions={{
@@ -153,9 +180,9 @@ export default function MyNavigator() {
         <MainNavigator.Screen
           name="Notlog"
           component={NotloginNavigator}>
-
           </MainNavigator.Screen>
       </MainNavigator.Navigator>
     </NavigationContainer>
-  );
+    )
+  }
 }
