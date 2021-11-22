@@ -15,7 +15,7 @@ import {
 } from 'react-native';
 import {Searchbar, List} from 'react-native-paper';
 
-const PersonalInfo = () => {
+const PersonalInfo = ({navigation}) => {
   const [selectedId, setSelectedId] = useState(null);
 
   const [search, setSearch] = useState('');
@@ -80,7 +80,11 @@ const PersonalInfo = () => {
           <Button
             title="Logout"
             color="red"
-            onPress={() => Alert.alert('Simple Button pressed')}
+            onPress={() => {
+              return(
+                navigation.navigate("LogOut")
+              )
+            }}
           />
         </View>
       </View>

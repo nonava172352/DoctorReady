@@ -17,6 +17,8 @@ import { useSelector, useDispatch } from "react-redux";
 import {Searchbar} from 'react-native-paper';
 import axios from "axios"
 import { diseActionSet } from "../store/action/actions"
+import { listdi } from "../data/disease-data"
+
 // const Item = ({item}) => (
 //   <TouchableOpacity
 //     style={{
@@ -37,35 +39,53 @@ const MainScreens = () => {
   const [search, setSearch] = useState('');
   const [filteredDataSource, setFilteredDataSource] = useState([]);
   const [masterDataSource, setMasterDataSource] = useState([]);
+  const [namedi, setNamedi] = useState([]);
   const dispatch = useDispatch()
-  
-  useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/posts')
-      .then((response) => response.json())
-      .then((responseJson) => {
-        setFilteredDataSource(responseJson);
-        setMasterDataSource(responseJson);
 
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-      axios({method:"get", url:"http://192.168.1.38:8082/disease"}).then((response) =>{
-        dispatch(diseActionSet(response.data))
-        const data = useSelector((state) => state.redu.dise)
-        console.log(data)
+  // console.log(masterDataSource)
+  useEffect(() => {
+    setNamedi(listdi);
+    // fetch('https://jsonplaceholder.typicode.com/posts')
+    //   .then((response) => response.json())
+    //   .then((responseJson) => {
+    //     setFilteredDataSource(responseJson);
+    //     setMasterDataSource(responseJson);
+    //   })
+    //   .catch((error) => {
+    //     console.error(error);
+    //   });
+    //   axios({method:"get", url:"http://192.168.1.38:8082/disease"}).then((response) =>{
+    //     dispatch(diseActionSet(response.data))
+    //     const data = useSelector((state) => state.redu.dise)
+    //     console.log(data)
         
-      })
+    //   })
 
   }, []);
 
 
+  // const searchFilterFunction = (text) => {
+  //   if (text) {
+  //     const newData = masterDataSource.filter(function (item) {
+  //       const itemData = item.title
+  //         ? item.title.toUpperCase()
+  //         : ''.toUpperCase();
+  //       const textData = text.toUpperCase();
+  //       return itemData.indexOf(textData) > -1;
+  //     });
+  //     setFilteredDataSource(newData);
+  //     setSearch(text);
+  //   } else {
+  //     setFilteredDataSource(masterDataSource);
+  //     setSearch(text);
+  //   }
+  // };
 
   const searchFilterFunction = (text) => {
     if (text) {
-      const newData = masterDataSource.filter(function (item) {
-        const itemData = item.title
-          ? item.title.toUpperCase()
+      const newData = namedi.filter(function (item) {
+        const itemData = item.disease
+          ? item.disease.toUpperCase()
           : ''.toUpperCase();
         const textData = text.toUpperCase();
         return itemData.indexOf(textData) > -1;
@@ -73,10 +93,12 @@ const MainScreens = () => {
       setFilteredDataSource(newData);
       setSearch(text);
     } else {
-      setFilteredDataSource(masterDataSource);
+      setFilteredDataSource(namedi);
       setSearch(text);
     }
   };
+
+
 
   const ItemView = ({ item }) => {
     return (
