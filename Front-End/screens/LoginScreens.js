@@ -14,26 +14,31 @@ import {
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import CheckBox from '@react-native-community/checkbox';
-
+import axios from 'axios';
+import { useSelector, useDispatch } from "react-redux";
+import { diseActionSet, userActionSet } from "../store/action/actions"
 const LoginScreens = (navigation) => {
-  const [username, SetUsername] = React.useState('');
-  const [password, SetPassword] = React.useState('');
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
-  console.log(username)
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.redu.user)
+
   return (
     
     <SafeAreaView style={styles.container}>
       <Text style={{fontSize: 50, paddingBottom: 20}}>DoctorReady</Text>
       <TextInput
         style={styles.input}
-        onChangeText={username}
-        placeholder="Username"
-        // value={username}
+        onChangeText={setEmail}
+        placeholder="email"
+        // value={email}
       />
       <TextInput
         style={styles.input}
         // onChangeText={password}
-        value={password}
+        secureTextEntry={true}
+        onChangeText={setPassword}
         placeholder="Password"
       />
       
@@ -50,15 +55,34 @@ const LoginScreens = (navigation) => {
       <View style={{width: 70, marginBottom: 12, borderRadius: 50}}>
         <Button
           title="Login"
-          onPress={() => Alert.alert('Simple Button pressed')}
+          onPress={() => {
+          if(email == ""){
+            Alert.alert('กรุณากรอก Email')
+          }else if(password == ""){
+            Alert.alert('กรุณากรอก Password')            
+          }else{
+            axios({method:"post", url:"http://192.168.1.38:8082/login", data:{email : email, password:password} }).then((response) =>{
+              if(response.data){
+                dispatch(userActionSet(response.data))
+                Alert.alert('Login สำเร็จ')    
+              }else{
+                Alert.alert('email หรือ password ไม่ถูกต้อง :)')    
+                
+              }
+          })    
+
+          }
+
+        }}
         />
       </View>
       <View style={{width: 100}}>
         <Button
           title="Sign Up"
-          // onPress={() => {
-          //   navigation.navigate("Signup")
-          // }}
+          onPress={() => {
+            
+            console.log(user)
+          }}
         />
       </View>
       <TouchableOpacity>

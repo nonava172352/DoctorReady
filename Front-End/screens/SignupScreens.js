@@ -1,5 +1,7 @@
 import React from 'react';
 import {useState} from 'react';
+import { useSelector, useDispatch } from "react-redux";
+import { diseActionSet } from "../store/action/actions"
 import {
   SafeAreaView,
   StyleSheet,
@@ -12,6 +14,7 @@ import {
   TouchableOpacity,
   Alert,
 } from 'react-native';
+import { firebaseConfig } from "../firebase"
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import CheckBox from '@react-native-community/checkbox';
@@ -66,7 +69,7 @@ const SignupScreens = () => {
 
       <TextInput
         style={styles.input}
-        // onChangeText={password}
+        onChangeText={password}
 
         placeholder="อายุ"
       />
@@ -80,7 +83,10 @@ const SignupScreens = () => {
       <View style={{width: 70, justifyContent: 'center', alignItems: 'center'}}>
         <Button
           title="Signup"
-          onPress={() => Alert.alert('Simple Button pressed')}
+        //   onPress={() => {Alert.alert('Simple Button pressed')
+        //   const data = useSelector((state) => state.redu.dise)
+        //   console.log(data)
+        // }
         />
       </View>
       </ScrollView>
