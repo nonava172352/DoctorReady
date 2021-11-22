@@ -2,6 +2,7 @@ package com.DataService.Rabbit;
 
 import com.DataService.ReadFileJson;
 import com.DataService.command.CreateUserCommand;
+import com.DataService.command.rest.CreateSymptomRestModel;
 import com.DataService.command.rest.CreateUserRestModel;
 import com.DataService.command.rest.DataCommandController;
 import com.DataService.query.rest.UserRestModel;
@@ -46,4 +47,14 @@ public class Requestandreply {
     public Object getDisease(@PathVariable("n1") String n1){
         return new ReadFileJson().getReadFileJson(n1);
     }
+
+    @PostMapping(value = "symptom")
+    public String setSymtom(@RequestBody CreateSymptomRestModel model){
+        System.out.println("Symtom");
+
+        String m = (String) rabbitTemplate.convertSendAndReceive("Direct", "symptom", model);
+      return m;
+    };
+
+
 }
