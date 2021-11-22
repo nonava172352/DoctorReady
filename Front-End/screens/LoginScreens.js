@@ -17,7 +17,8 @@ import CheckBox from '@react-native-community/checkbox';
 import axios from 'axios';
 import { useSelector, useDispatch } from "react-redux";
 import { diseActionSet, userActionSet } from "../store/action/actions"
-const LoginScreens = (navigation) => {
+
+const LoginScreens = ({navigation}) => {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
@@ -31,7 +32,7 @@ const LoginScreens = (navigation) => {
       <TextInput
         style={styles.input}
         onChangeText={setEmail}
-        placeholder="email"
+        placeholder="Email"
         // value={email}
       />
       <TextInput
@@ -80,8 +81,10 @@ const LoginScreens = (navigation) => {
         <Button
           title="Sign Up"
           onPress={() => {
+            return(
+              navigation.navigate("Signup")
+            )
             
-            console.log(user)
           }}
         />
       </View>

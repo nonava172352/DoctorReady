@@ -11,7 +11,6 @@ import HospitalmapScreens from '../notlogin/HospitalmapScreens';
 import Diseaserecord from '../alreadylogin/Diseaserecord';
 import Searchguess from '../alreadylogin/Searchguess';
 import SearchDetail from '../alreadylogin/SearchDetail';
-import MainScreensLogin from '../alreadylogin/MainScreens';
 import Allsearch from '../alreadylogin/Allsearch';
 import PersonalInfo from '../alreadylogin/PersonalInfo';
 import DiseaseDetailsScreens from '../notlogin/DiseaseDetailsScreens';
@@ -30,18 +29,25 @@ const TopTab = createMaterialTopTabNavigator();
 function NotloginNavigator() {
   return (
     <Bottomtab.Navigator
+    initialRouteName="หน้าหลัก"
       screenOptions={{
         headerShown: false,
+        tabBarActiveTintColor: '#FFFFFF',
+        tabBarLabelStyle: { fontSize: 10, fontWeight: 'bold' },
+        tabBarStyle: { backgroundColor: '#01B3CD' },
       }}>
       <Bottomtab.Screen
-        name="Login"
-        component={LoginScreens}/>
+        name="toLogin"
+        component={signup}
+        options={{ tabBarLabel: 'Login'}}/>
       <Bottomtab.Screen
         name="หน้าหลัก"
-        component={MainScreens}/>
+        component={MainScreens}
+        options={{ tabBarLabel: 'หน้าหลัก' }}/>
       <Bottomtab.Screen
         name="โรงพยาบาลใกล้ฉัน"
-        component={HospitalmapScreens}/>
+        component={HospitalmapScreens}
+        options={{ tabBarLabel: 'โรงพยาบาลใกล้ฉัน' }}/>
     </Bottomtab.Navigator>
   );
 }
@@ -50,6 +56,9 @@ function loginNavigator() {
     <Bottomtab.Navigator
       screenOptions={{
         headerShown: false,
+        tabBarActiveTintColor: '#FFFFFF',
+        tabBarLabelStyle: { fontSize: 10, fontWeight: 'bold' },
+        tabBarStyle: { backgroundColor: '#01B3CD' }
       }}>
       <Bottomtab.Screen
         name="คาดคะเนโรค"
@@ -62,9 +71,28 @@ function loginNavigator() {
         component={HospitalmapScreens}/>
       <Bottomtab.Screen
         name="ข้อมูลส่วนตัว"
-        component={PersonalInfo}/>
+        component={Personal}/>
     </Bottomtab.Navigator>
   );
+}
+
+function Personal () {
+  return (
+    <MainNavigator.Navigator
+    initialRouteName="Personal"
+      screenOptions={{
+          headerShown: false,
+        }}>
+        <MainNavigator.Screen
+        name="Personal"
+        component={PersonalInfo}>
+        </MainNavigator.Screen>
+        <MainNavigator.Screen
+        name="LogOut"
+        component={signup}>
+        </MainNavigator.Screen>
+    </MainNavigator.Navigator>
+  )
 }
 
 function ToptabNavigator() {
@@ -101,9 +129,15 @@ function signup () {
     <MainNavigator.Navigator
       screenOptions={{
           headerShown: false,
-        }}
+        }}>
+        <MainNavigator.Screen
+        name="Login"
+        component={LoginScreens}>
+        </MainNavigator.Screen>
+        <MainNavigator.Screen
         name="Signup"
         component={SignupScreens}>
+        </MainNavigator.Screen>
     </MainNavigator.Navigator>
   )
 }
@@ -118,7 +152,7 @@ export default function MyNavigator() {
         }}>
         <MainNavigator.Screen
           name="Notlog"
-          component={ToptabNavigator}>
+          component={NotloginNavigator}>
 
           </MainNavigator.Screen>
       </MainNavigator.Navigator>
