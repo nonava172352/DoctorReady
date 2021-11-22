@@ -1,5 +1,6 @@
 package com.DataService.command.rest;
 
+import com.DataService.command.CreateSymptomCommand;
 import com.DataService.command.CreateUserCommand;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -45,8 +46,27 @@ public class DataCommandController {
         }
         return result;
     }
-    @DeleteMapping
-    public String deleteUsers(){
-        return "DeleteUser";
+
+    @RabbitListener(queues = "SymtomQueue")
+    public String createSymptom(CreateSymptomRestModel model){
+        CreateSymptomCommand command = CreateSymptomCommand.builder()
+                .symptomID(UUID.randomUUID().toString())
+                .symptom(model.getSymptom())
+                .symptomDuration(model.getSymptomDuration())
+                .haveFever(model.isHaveFever())
+                .painPosition(model.getPainPosition())
+                .drugAllergy(model.getDrugAllergy())
+                .more(model.getMore())
+                .build();
+        String result;
+
+        try {
+            result = commandGateway.sendAndWait(command);
+            System.out.println(result);
+
+        }catch(Exception e){
+            result = e.getLocalizedMessage();
+        }
+        return result;
     }
 }
