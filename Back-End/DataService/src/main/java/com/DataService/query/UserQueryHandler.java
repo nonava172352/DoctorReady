@@ -20,9 +20,9 @@ public class UserQueryHandler {
     }
 
     @QueryHandler
-    List<UserRestModel> findUsers(FindUserQuery query){
+    List<UserRestModel> AuthUsers(AuthQuery query){
         List<UserRestModel> userRest = new ArrayList<>();
-        System.out.println(query.getEmail() + query.getPassword() + "Query");
+        System.out.println("AuthUsers");
         UserEntity storedUser = userRepository.findByEmail(query.getEmail());
 
         UserRestModel userRestModel = new UserRestModel();
@@ -30,6 +30,20 @@ public class UserQueryHandler {
         userRest.add(userRestModel);
 
             return userRest;
+    }
+    @QueryHandler
+    List<UserRestModel> getUsers(FindUserQuery query){
+        List<UserRestModel> userRest = new ArrayList<>();
+        System.out.println("getUsers");
+        List<UserEntity> storeUser = userRepository.findAll();
+
+        for (UserEntity userEntity : storeUser){
+            UserRestModel userRestModel = new UserRestModel();
+            BeanUtils.copyProperties(userEntity, userRestModel);
+            userRest.add(userRestModel);
+
+        }
+        return userRest;
     }
 
 }

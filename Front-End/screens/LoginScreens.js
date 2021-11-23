@@ -17,13 +17,13 @@ import CheckBox from '@react-native-community/checkbox';
 import axios from 'axios';
 import { useSelector, useDispatch } from "react-redux";
 import { diseActionSet, userActionSet } from "../store/action/actions"
-
 const LoginScreens = ({navigation}) => {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.redu.user)
+  axios.defaults.timeout = 1000;
 
   return (
     
@@ -67,8 +67,7 @@ const LoginScreens = ({navigation}) => {
                 dispatch(userActionSet(response.data))
                 Alert.alert('Login สำเร็จ')    
               }else{
-                Alert.alert('email หรือ password ไม่ถูกต้อง :)')    
-                
+                Alert.alert('email หรือ password ไม่ถูกต้อง :)')
               }
           })    
 
@@ -81,9 +80,9 @@ const LoginScreens = ({navigation}) => {
         <Button
           title="Sign Up"
           onPress={() => {
-            return(
-              navigation.navigate("Signup")
-            )
+            console.log(user)
+            return(navigation.navigate("Signup"))
+            
             
           }}
         />

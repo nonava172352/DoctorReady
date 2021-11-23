@@ -1,6 +1,7 @@
 package com.DataService.query.rest;
 
 import com.DataService.Rabbit.LoginRestModel;
+import com.DataService.query.AuthQuery;
 import com.DataService.query.FindUserQuery;
 import org.axonframework.messaging.responsetypes.ResponseTypes;
 import org.axonframework.queryhandling.QueryGateway;
@@ -20,10 +21,16 @@ public class UserQueryController {
 //    @RequestMapping(value = "/login", method = RequestMethod.POST)
     @RabbitListener(queues = "LoginQueue")
     public Object getUsers(LoginRestModel model){
-        FindUserQuery findUserQuery = new FindUserQuery(model);
+        AuthQuery authQuery = new AuthQuery(model);
             List<UserRestModel> users = queryGateway
-                    .query(findUserQuery, ResponseTypes.multipleInstancesOf(UserRestModel.class)).join();
+                    .query(authQuery, ResponseTypes.multipleInstancesOf(UserRestModel.class)).join();
             return users.get(0);
+
+    }@RabbitListener(queues = "UsersQueue")
+    public Object getUsers(){
+        FindUserQuery findUserQuery = new FindUserQuery();
+        List<UserRestModel> users = queryGateway.query(findUserQuery, ResponseTypes.multipleInstancesOf(UserRestModel.class)).join();
+        return users;
 
     }
 //    public List<UserRestModel> AuthLogin(){
