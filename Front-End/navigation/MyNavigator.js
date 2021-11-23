@@ -21,6 +21,7 @@ import Prevent from '../component/Prevent';
 import Cause from '../component/Cause';
 import { useSelector, useDispatch } from "react-redux";
 import { diseActionSet, userActionSet } from "../store/action/actions"
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const MainNavigator = createNativeStackNavigator();
 
@@ -46,7 +47,7 @@ function NotloginNavigator() {
         options={{ tabBarLabel: 'Login'}}/>
       <Bottomtab.Screen
         name="หน้าหลัก"
-        component={MainScreens}
+        component={Topstack}
         options={{ tabBarLabel: 'หน้าหลัก' }}/>
       <Bottomtab.Screen
         name="โรงพยาบาลใกล้ฉัน"
@@ -54,6 +55,25 @@ function NotloginNavigator() {
         options={{ tabBarLabel: 'โรงพยาบาลใกล้ฉัน' }}/>
     </Bottomtab.Navigator>
   );
+}
+
+function Topstack() {
+  return (
+    <MainNavigator.Navigator
+    initialRouteName="Personal"
+      screenOptions={{
+          headerShown: false,
+        }}>
+    <MainNavigator.Screen
+        name="Main"
+        component={MainScreens}>
+        </MainNavigator.Screen>
+        <MainNavigator.Screen
+        name="Toptab"
+        component={ToptabNavigator}>
+        </MainNavigator.Screen>
+  </MainNavigator.Navigator>
+  )
 }
 
 function ToptabNavigator() {
@@ -104,7 +124,7 @@ function loginNavigator() {
         name="โรงพยาบาลใกล้ฉัน"
         component={HospitalmapScreens}/>
       <Bottomtab.Screen
-        name="Personal"
+        name="ข้อมูลส่วนตัว"
         component={PersonalInfo}/>
     </Bottomtab.Navigator>
   );
@@ -154,6 +174,7 @@ export default function MyNavigator() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.redu.user);
   // dispatch(userActionSet('asd'))
+  // dispatch(userActionSet())
   console.log(user)
   if (user != null) {
   return (

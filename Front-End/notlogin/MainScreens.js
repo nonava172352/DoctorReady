@@ -33,7 +33,7 @@ import { listdi } from "../data/disease-data"
 
 
 
-const MainScreens = () => {
+const MainScreens = ({navigation}) => {
   const [selectedId, setSelectedId] = useState(null);
 
   const [search, setSearch] = useState('');
@@ -103,7 +103,7 @@ const MainScreens = () => {
 
 // console.log(filteredDataSource)
 
-  const ItemView = ({ item, navigation }) => {
+  const ItemView = ({item}) => {
     return (
       <TouchableOpacity
       style={{
@@ -113,9 +113,9 @@ const MainScreens = () => {
         width: 370,
       }}>
 
-      <Text style={{fontSize: 17, padding: 7, color: "white"}} onSelect={() => {
+      <Text style={{fontSize: 17, padding: 7, color: "white"}} onPress={() => {
         return(
-          navigation.navigate("ToptabNavigator", {disease: item.disease, sympton: item.sympton, cause: item.cause, prevent: item.prevent})
+          navigation.navigate("Toptab", {disease: item.disease, sympton: item.sympton, cause: item.cause, prevent: item.prevent})
         )
       }}>
         {item.disease}
