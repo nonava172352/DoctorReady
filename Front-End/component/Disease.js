@@ -16,8 +16,8 @@ import {
 } from 'react-native';
 import {Searchbar, List} from 'react-native-paper';
 
-const Disease = () => {
-
+const Disease = ({route, navigation}) => {
+  const {disease} = route.params;
   return (
     <ScrollView>
       <View style={styles.font}>
@@ -25,7 +25,7 @@ const Disease = () => {
       </View>
       <View style={{marginLeft: 15, width: '94%', marginBottom: 25}}>
         <View style={{marginBottom: 7}}>
-          <Text style={{fontSize: 27, fontWeight: '600'}}>โรคเบาหวาน</Text>
+          <Text style={{fontSize: 27, fontWeight: '600'}}>{disease}</Text>
         </View>
         <View>
           <Text style={{fontSize: 15}}>

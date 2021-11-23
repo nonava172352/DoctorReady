@@ -83,8 +83,6 @@ const LoginScreens = ({navigation}) => {
         <Button
           title="Sign Up"
           onPress={() => {
-            // dispatch(userActionSet(['AASDAS']))
-            // console.log(user)
             return(
               navigation.navigate("Signup")
             )
