@@ -109,11 +109,12 @@ const MainScreens = ({route, navigation}) => {
       style={{
         marginLeft: 12,
         marginBottom: 7,
-        backgroundColor: 'grey',
+        backgroundColor: 'black',
         width: 370,
+        borderRadius: 15
       }}>
 
-      <Text style={{fontSize: 17, padding: 7, color: "white"}} onPress={() => {
+      <Text style={{fontSize: 17, padding: 15, color: "white"}} onPress={() => {
         return(
           navigation.navigate("Toptab", {screen:"name1", params:{disease: item.disease, sympton: item.sympton, cause: item.cause, prevent: item.prevent}})
         )
@@ -127,7 +128,7 @@ const MainScreens = ({route, navigation}) => {
   return (
     <SafeAreaView>
       <View style={styles.font}>
-        <Text style={{fontSize: 35}}>ข้อมูลโรค</Text>
+        <Text style={{fontSize: 35, color: '#01B3CD'}}>ข้อมูลโรค</Text>
       </View>
       <View style={{alignItems: 'center', marginBottom: 12}}>
         <Searchbar

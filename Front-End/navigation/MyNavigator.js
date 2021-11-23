@@ -1,6 +1,5 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
-import {AntDesign} from '@expo/vector-icons';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import LoginScreens from '../screens/LoginScreens';
@@ -21,7 +20,7 @@ import Prevent from '../component/Prevent';
 import Cause from '../component/Cause';
 import { useSelector, useDispatch } from "react-redux";
 import { diseActionSet, userActionSet } from "../store/action/actions"
-// import Ionicons from 'react-native-vector-icons/Ionicons';
+// import { FaBeer } from 'react-icons/fa';
 
 const MainNavigator = createNativeStackNavigator();
 
@@ -60,7 +59,7 @@ function NotloginNavigator() {
 function Topstack() {
   return (
     <MainNavigator.Navigator
-    initialRouteName="Personal"
+    initialRouteName="Main"
       screenOptions={{
           headerShown: false,
         }}>
@@ -115,15 +114,25 @@ function ToptabNavigator({route, navigation}) {
 function loginNavigator() {
   return (
     <Bottomtab.Navigator
+    initialRouteName="หน้าหลัก"
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: '#FFFFFF',
         tabBarLabelStyle: { fontSize: 10, fontWeight: 'bold' },
-        tabBarStyle: { backgroundColor: '#01B3CD' }
-      }}>
+        tabBarStyle: { backgroundColor: '#01B3CD' },
+        color: 'black'
+      }}
+      >
       <Bottomtab.Screen
         name="คาดคะเนโรค"
-        component={Searchguess}/>
+        component={Searchguess}
+        options={{
+          tabBarLabel: 'คาดคะเนโรค',
+          // tabBarIcon: ({ color, size }) => (
+          //   <FaBeer name="home" color={color} size={size}/>
+          // ),
+        }}
+      />
       <Bottomtab.Screen
         name="หน้าหลัก"
         component={MainScreens}/>
@@ -151,6 +160,10 @@ function Personal () {
         <MainNavigator.Screen
         name="LogOut"
         component={signup}>
+        </MainNavigator.Screen>
+        <MainNavigator.Screen
+        name="Diseaserecord"
+        component={Diseaserecord}>
         </MainNavigator.Screen>
     </MainNavigator.Navigator>
   )
@@ -180,8 +193,7 @@ function signup () {
 export default function MyNavigator() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.redu.user);
-  // dispatch(userActionSet('asd'))
-  // dispatch(userActionSet())
+  // dispatch(userActionSet(''))
   console.log(user)
   if (user != null) {
   return (

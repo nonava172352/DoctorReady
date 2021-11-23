@@ -133,6 +133,8 @@ const SignupScreens = () => {
           
           }
         }
+          color='green'
+          //   onPress={() => {Alert.alert('Simple Button pressed')}
         />
       </View>
     </View>
