@@ -19,12 +19,16 @@ import Disease from '../component/Disease';
 import Sympton from '../component/Symptom';
 import Prevent from '../component/Prevent';
 import Cause from '../component/Cause';
+import { useSelector, useDispatch } from "react-redux";
+import { diseActionSet, userActionSet } from "../store/action/actions"
 
 const MainNavigator = createNativeStackNavigator();
 
 const Bottomtab = createBottomTabNavigator();
 
 const TopTab = createMaterialTopTabNavigator();
+
+
 
 function NotloginNavigator() {
   return (
@@ -38,7 +42,7 @@ function NotloginNavigator() {
       }}>
       <Bottomtab.Screen
         name="toLogin"
-        component={signup}
+        component={LoginScreens}
         options={{ tabBarLabel: 'Login'}}/>
       <Bottomtab.Screen
         name="หน้าหลัก"
@@ -50,49 +54,6 @@ function NotloginNavigator() {
         options={{ tabBarLabel: 'โรงพยาบาลใกล้ฉัน' }}/>
     </Bottomtab.Navigator>
   );
-}
-function loginNavigator() {
-  return (
-    <Bottomtab.Navigator
-      screenOptions={{
-        headerShown: false,
-        tabBarActiveTintColor: '#FFFFFF',
-        tabBarLabelStyle: { fontSize: 10, fontWeight: 'bold' },
-        tabBarStyle: { backgroundColor: '#01B3CD' }
-      }}>
-      <Bottomtab.Screen
-        name="คาดคะเนโรค"
-        component={Searchguess}/>
-      <Bottomtab.Screen
-        name="หน้าหลัก"
-        component={MainScreens}/>
-      <Bottomtab.Screen
-        name="โรงพยาบาลใกล้ฉัน"
-        component={HospitalmapScreens}/>
-      <Bottomtab.Screen
-        name="ข้อมูลส่วนตัว"
-        component={Personal}/>
-    </Bottomtab.Navigator>
-  );
-}
-
-function Personal () {
-  return (
-    <MainNavigator.Navigator
-    initialRouteName="Personal"
-      screenOptions={{
-          headerShown: false,
-        }}>
-        <MainNavigator.Screen
-        name="Personal"
-        component={PersonalInfo}>
-        </MainNavigator.Screen>
-        <MainNavigator.Screen
-        name="LogOut"
-        component={signup}>
-        </MainNavigator.Screen>
-    </MainNavigator.Navigator>
-  )
 }
 
 function ToptabNavigator() {
@@ -124,7 +85,52 @@ function ToptabNavigator() {
   );
 }
 
-function signup () {
+function loginNavigator() {
+  return (
+    <Bottomtab.Navigator
+      screenOptions={{
+        headerShown: false,
+        tabBarActiveTintColor: '#FFFFFF',
+        tabBarLabelStyle: { fontSize: 10, fontWeight: 'bold' },
+        tabBarStyle: { backgroundColor: '#01B3CD' }
+      }}>
+      <Bottomtab.Screen
+        name="คาดคะเนโรค"
+        component={Searchguess}/>
+      <Bottomtab.Screen
+        name="หน้าหลัก"
+        component={MainScreens}/>
+      <Bottomtab.Screen
+        name="โรงพยาบาลใกล้ฉัน"
+        component={HospitalmapScreens}/>
+      <Bottomtab.Screen
+        name="Personal"
+        component={PersonalInfo}/>
+    </Bottomtab.Navigator>
+  );
+}
+
+function Personal () {
+  return (
+    <MainNavigator.Navigator
+    initialRouteName="Personal"
+      screenOptions={{
+          headerShown: false,
+        }}>
+        <MainNavigator.Screen
+        name="Personal"
+        component={loginNavigator}>
+        </MainNavigator.Screen>
+        <MainNavigator.Screen
+        name="LogOut"
+        component={signup}>
+        </MainNavigator.Screen>
+    </MainNavigator.Navigator>
+  )
+}
+
+
+function signup () { 
   return (
     <MainNavigator.Navigator
       screenOptions={{
@@ -132,7 +138,7 @@ function signup () {
         }}>
         <MainNavigator.Screen
         name="Login"
-        component={LoginScreens}>
+        component={NotloginNavigator}>
         </MainNavigator.Screen>
         <MainNavigator.Screen
         name="Signup"
@@ -143,7 +149,13 @@ function signup () {
 }
 
 
+
 export default function MyNavigator() {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.redu.user);
+  dispatch(userActionSet('asd'))
+  console.log(user)
+  if (user != null) {
   return (
     <NavigationContainer>
       <MainNavigator.Navigator
@@ -151,11 +163,26 @@ export default function MyNavigator() {
           headerShown: false,
         }}>
         <MainNavigator.Screen
-          name="Notlog"
-          component={NotloginNavigator}>
-
+          name="log"
+          component={Personal}>
           </MainNavigator.Screen>
       </MainNavigator.Navigator>
     </NavigationContainer>
   );
+  }
+  else {
+    return (
+    <NavigationContainer>
+      <MainNavigator.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}>
+        <MainNavigator.Screen
+          name="Notlog"
+          component={signup}>
+          </MainNavigator.Screen>
+      </MainNavigator.Navigator>
+    </NavigationContainer>
+    )
+  }
 }

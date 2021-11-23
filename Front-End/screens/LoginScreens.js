@@ -80,11 +80,14 @@ const LoginScreens = ({navigation}) => {
         <Button
           title="Sign Up"
           onPress={() => {
-            console.log(user)
-            return(navigation.navigate("Signup"))
-            
+            // dispatch(userActionSet(['AASDAS']))
+            // console.log(user)
+            return(
+              navigation.navigate("Signup")
+            )
             
           }}
+          
         />
       </View>
       <TouchableOpacity>

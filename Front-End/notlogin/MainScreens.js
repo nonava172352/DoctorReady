@@ -14,7 +14,7 @@ import {
   StatusBar,
 } from 'react-native';
 import { useSelector, useDispatch } from "react-redux";
-import {Searchbar} from 'react-native-paper';
+import {List, Searchbar} from 'react-native-paper';
 import axios from "axios"
 import { diseActionSet } from "../store/action/actions"
 import { listdi } from "../data/disease-data"
@@ -44,7 +44,10 @@ const MainScreens = () => {
 
   // console.log(masterDataSource)
   useEffect(() => {
+    setFilteredDataSource(listdi);
     setNamedi(listdi);
+    // setFilteredDataSource(listdi);
+    
     // fetch('https://jsonplaceholder.typicode.com/posts')
     //   .then((response) => response.json())
     //   .then((responseJson) => {
@@ -85,9 +88,9 @@ const MainScreens = () => {
     if (text) {
       const newData = namedi.filter(function (item) {
         const itemData = item.disease
-          ? item.disease.toUpperCase()
-          : ''.toUpperCase();
-        const textData = text.toUpperCase();
+          // ? item.disease.toUpperCase()
+          // : ''.toUpperCase();
+        const textData = text;
         return itemData.indexOf(textData) > -1;
       });
       setFilteredDataSource(newData);
@@ -98,9 +101,9 @@ const MainScreens = () => {
     }
   };
 
+// console.log(filteredDataSource)
 
-
-  const ItemView = ({ item }) => {
+  const ItemView = ({ item, navigation }) => {
     return (
       <TouchableOpacity
       style={{
@@ -110,10 +113,12 @@ const MainScreens = () => {
         width: 370,
       }}>
 
-      <Text style={{fontSize: 17, padding: 7, color: "white"}} onPress={() => getItem(item)}>
-        {item.id}
-        {'.'}
-        {item.title.toUpperCase()}
+      <Text style={{fontSize: 17, padding: 7, color: "white"}} onSelect={() => {
+        return(
+          navigation.navigate("ToptabNavigator", {disease: item.disease, sympton: item.sympton, cause: item.cause, prevent: item.prevent})
+        )
+      }}>
+        {item.disease}
       </Text>
       </TouchableOpacity>
     );
