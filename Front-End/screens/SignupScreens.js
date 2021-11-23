@@ -92,6 +92,7 @@ const SignupScreens = () => {
       <View style={{width: '30%', marginTop: 15, marginLeft: '35%'}}>
         <Button
           title="Signup"
+          color='green'
           //   onPress={() => {Alert.alert('Simple Button pressed')}
         />
       </View>

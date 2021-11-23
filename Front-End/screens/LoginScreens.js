@@ -30,7 +30,7 @@ const LoginScreens = ({navigation}) => {
   return (
     
     <SafeAreaView style={styles.container}>
-      <Text style={{fontSize: 50, paddingBottom: 20}}>DoctorReady</Text>
+      <Text style={{fontSize: 50, paddingBottom: 20, fontFamily: 'sans-serif-medium', color: '#01B3CD'}}>DoctorReady</Text>
       <TextInput
         style={styles.input}
         onChangeText={setEmail}
@@ -52,10 +52,12 @@ const LoginScreens = ({navigation}) => {
         value={toggleCheckBox}
         onValueChange={newValue => setToggleCheckBox(newValue)}
       />
-      <Text >Remember me</Text>
+      <View style={{marginTop: 5}}>
+      <Text>Remember me</Text>
+      </View>
       </View>
       
-      <View style={{width: 70, marginBottom: 12, borderRadius: 50}}>
+      <View style={{width: 70, marginBottom: 12}}>
         <Button
           title="Login"
           onPress={() => {
@@ -82,6 +84,7 @@ const LoginScreens = ({navigation}) => {
       <View style={{width: 100}}>
         <Button
           title="Sign Up"
+          color="green"
           onPress={() => {
             return(
               navigation.navigate("Signup")
@@ -105,6 +108,8 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
     padding: 10,
     width: 250,
+    borderRadius: 15,
+
   },
   container: {
     flex: 1,

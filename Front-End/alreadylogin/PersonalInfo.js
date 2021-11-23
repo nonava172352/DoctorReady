@@ -23,47 +23,37 @@ const PersonalInfo = ({navigation}) => {
   return (
     <SafeAreaView>
       <View style={styles.font}>
-        <Text style={{fontSize: 35}}>ข้อมูลส่วนตัว</Text>
+        <Text style={{fontSize: 35, color: '#01B3CD'}}>ข้อมูลส่วนตัว</Text>
       </View>
       <View style={{marginBottom: 50}}>
         <List.Item
-          title="โรคที่บันทึกไว้"
-          style={{
-            backgroundColor: '#ccc',
-            borderRadius: 5,
-            borderColor: 'grey',
-            borderWidth: 1,
-            width: '95%',
-            marginLeft: 10,
-            marginBottom: 10,
-          }}
-          right={props => <List.Icon {...props} icon="folder" />}
-          onPress={() => Alert.alert('Simple Button pressed')}
-        />
-        <List.Item
           title="อาการที่บันทึกไว้"
           style={{
-            backgroundColor: '#ccc',
+            backgroundColor: 'white',
             borderRadius: 5,
-            borderColor: 'grey',
+            borderColor: 'white',
             borderWidth: 1,
             width: '95%',
             marginLeft: 10,
-            marginBottom: 10,
+            marginBottom: 10,        
           }}
           right={props => <List.Icon {...props} icon="folder" />}
-          onPress={() => Alert.alert('Simple Button pressed')}
+          onPress={() => {
+            return(
+              navigation.navigate("Diseaserecord")
+            )
+          }}
         />
         <List.Item
           title="ข้อมูลส่วนตัว"
           style={{
-            backgroundColor: '#ccc',
+            backgroundColor: 'white',
             borderRadius: 5,
-            borderColor: 'grey',
+            borderColor: 'white',
             borderWidth: 1,
             width: '95%',
             marginLeft: 10,
-            marginBottom: 10,
+            marginBottom: 10,        
           }}
           right={props => <List.Icon {...props} icon="folder" />}
           onPress={() => Alert.alert('Simple Button pressed')}
