@@ -33,7 +33,7 @@ import { listdi } from "../data/disease-data"
 
 
 
-const MainScreens = ({navigation}) => {
+const MainScreens = ({route, navigation}) => {
   const [selectedId, setSelectedId] = useState(null);
 
   const [search, setSearch] = useState('');
@@ -115,7 +115,7 @@ const MainScreens = ({navigation}) => {
 
       <Text style={{fontSize: 17, padding: 7, color: "white"}} onPress={() => {
         return(
-          navigation.navigate("Toptab", {disease: item.disease, sympton: item.sympton, cause: item.cause, prevent: item.prevent})
+          navigation.navigate("Toptab", {screen:"name1", params:{disease: item.disease, sympton: item.sympton, cause: item.cause, prevent: item.prevent}})
         )
       }}>
         {item.disease}

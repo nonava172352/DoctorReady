@@ -16,7 +16,7 @@ import {
 import {Searchbar, List} from 'react-native-paper';
 import { useSelector, useDispatch } from "react-redux";
 import { diseActionSet, userActionSet } from "../store/action/actions"
-
+import {Diseaserecord} from "./Diseaserecord";
 const PersonalInfo = ({navigation}) => {
   const dispatch = useDispatch();
   const [selectedId, setSelectedId] = useState(null);

@@ -21,7 +21,7 @@ import Prevent from '../component/Prevent';
 import Cause from '../component/Cause';
 import { useSelector, useDispatch } from "react-redux";
 import { diseActionSet, userActionSet } from "../store/action/actions"
-import Ionicons from 'react-native-vector-icons/Ionicons';
+// import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const MainNavigator = createNativeStackNavigator();
 
@@ -76,7 +76,9 @@ function Topstack() {
   )
 }
 
-function ToptabNavigator() {
+function ToptabNavigator({route, navigation}) {
+  // console.log("====")
+  // console.log(route.params)
   return (
     <TopTab.Navigator
       screenOptions={{
@@ -86,11 +88,16 @@ function ToptabNavigator() {
         tabBarStyle: { backgroundColor: '#01B3CD' }
       }}>
       <TopTab.Screen
-        name="รายละเอียดโรค"
-        component={Disease}
-        options={{ tabBarLabel: 'รายละเอียดโรค' }}/>
+        name="name1"
+        
+        component={Disease }
+        options={{ tabBarLabel: 'รายละเอียดโรค'}, {route:route}
+        
+      }
+        
+        />
       <TopTab.Screen
-        name="อาการ"
+        name="name2"
         component={Sympton}
         options={{ tabBarLabel: 'อาการ' }}/>
       <TopTab.Screen
