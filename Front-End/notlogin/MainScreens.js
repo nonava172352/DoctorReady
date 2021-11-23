@@ -103,7 +103,7 @@ const MainScreens = () => {
 
 // console.log(filteredDataSource)
 
-  const ItemView = ({ item }) => {
+  const ItemView = ({ item, navigation }) => {
     return (
       <TouchableOpacity
       style={{
@@ -113,9 +113,12 @@ const MainScreens = () => {
         width: 370,
       }}>
 
-      <Text style={{fontSize: 17, padding: 7, color: "white"}} onPress={() => getItem(item)}>
+      <Text style={{fontSize: 17, padding: 7, color: "white"}} onSelect={() => {
+        return(
+          navigation.navigate("ToptabNavigator", {disease: item.disease, sympton: item.sympton, cause: item.cause, prevent: item.prevent})
+        )
+      }}>
         {item.disease}
-
       </Text>
       </TouchableOpacity>
     );
