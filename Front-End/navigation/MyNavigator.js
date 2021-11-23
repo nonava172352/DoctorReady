@@ -153,7 +153,7 @@ function signup () {
 export default function MyNavigator() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.redu.user);
-  dispatch(userActionSet('asd'))
+  // dispatch(userActionSet('asd'))
   console.log(user)
   if (user != null) {
   return (
@@ -171,7 +171,7 @@ export default function MyNavigator() {
   );
   }
   else {
-    return (
+        return (
     <NavigationContainer>
       <MainNavigator.Navigator
         screenOptions={{

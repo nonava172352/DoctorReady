@@ -119,8 +119,13 @@ const SignupScreens = () => {
               }else{
 
                 axios({method:"post", url:"http://192.168.1.38:8083/register", data:{email : email, password:password, username:username , name: name, weight:weight, height: height, detail: detail} }).then(
-                  (response) =>{console.log(response.data)}
-                ).catch((error) => console.log(error))
+                  (response) =>{
+                    dispatch(userActionSet(response.data))
+                    console.log(response.data)
+                  
+                  }
+                ).catch((error) => {console.log(error) 
+                  Alert.alert('ไม่สามารถเชื่อมต่อกับ Database ได้')})
                 
               }
 

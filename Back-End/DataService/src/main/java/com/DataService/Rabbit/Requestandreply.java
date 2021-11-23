@@ -19,10 +19,17 @@ public class Requestandreply {
     private RabbitTemplate rabbitTemplate;
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String Register(@RequestBody CreateUserRestModel model) {
+    public UserRestModel Register(@RequestBody CreateUserRestModel model) {
         String m = (String) rabbitTemplate.convertSendAndReceive("Direct", "register", model);
-
-        return m;
+        UserRestModel userRest = new UserRestModel();
+        List<UserRestModel> alldata = (List<UserRestModel>) rabbitTemplate.convertSendAndReceive("Direct", "users", "");
+        for (UserRestModel i : alldata){
+            if(i.getUserID().equals(m)){
+                System.out.println(i);
+                userRest = i;
+            }
+        }
+        return userRest;
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)

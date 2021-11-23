@@ -62,7 +62,7 @@ const LoginScreens = ({navigation}) => {
           }else if(password == ""){
             Alert.alert('กรุณากรอก Password')            
           }else{
-            axios({method:"post", url:"http://192.168.1.38:8082/login", data:{email : email, password:password} }).then((response) =>{
+            axios({method:"post", url:"http://192.168.1.38:8083/login", data:{email : email, password:password} }).then((response) =>{
               if(response.data){
                 dispatch(userActionSet(response.data))
                 Alert.alert('Login สำเร็จ')    

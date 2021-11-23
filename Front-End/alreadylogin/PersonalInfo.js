@@ -14,8 +14,11 @@ import {
   StatusBar,
 } from 'react-native';
 import {Searchbar, List} from 'react-native-paper';
+import { useSelector, useDispatch } from "react-redux";
+import { diseActionSet, userActionSet } from "../store/action/actions"
 
 const PersonalInfo = ({navigation}) => {
+  const dispatch = useDispatch();
   const [selectedId, setSelectedId] = useState(null);
 
   const [search, setSearch] = useState('');
@@ -81,7 +84,10 @@ const PersonalInfo = ({navigation}) => {
             title="Logout"
             color="red"
             onPress={() => {
+              dispatch(userActionSet())
+
               return(
+                
                 navigation.navigate("LogOut")
               )
             }}
