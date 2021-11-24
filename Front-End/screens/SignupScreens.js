@@ -108,6 +108,8 @@ const SignupScreens = () => {
       <View style={{width: '30%', marginTop: 15, marginLeft: '35%'}}>
         <Button
           title="Signup"
+          color='green'
+          //   onPress={() => {Alert.alert('Simple Button pressed')}
             onPress={() => {
               if(username == "" || password == "" || email =="" || name == ""|| weight == ""|| height == ""|| age == "" || detail == ""){
                 Alert.alert("กรุณากรอกข้อมูลให้ครบถ้วน")
@@ -133,8 +135,6 @@ const SignupScreens = () => {
           
           }
         }
-          color='green'
-          //   onPress={() => {Alert.alert('Simple Button pressed')}
         />
       </View>
     </View>

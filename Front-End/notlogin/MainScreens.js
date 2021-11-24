@@ -116,7 +116,7 @@ const MainScreens = ({route, navigation}) => {
 
       <Text style={{fontSize: 17, padding: 15, color: "white"}} onPress={() => {
         return(
-          navigation.navigate("Toptab", {screen:"name1", params:{disease: item.disease, sympton: item.sympton, cause: item.cause, prevent: item.prevent}})
+          navigation.navigate("Toptab", {screen:"รายละเอียดโรค", params:{disease: item.disease, sympton: item.sympton, cause: item.cause, prevent: item.prevent}})
         )
       }}>
         {item.disease}
@@ -135,7 +135,7 @@ const MainScreens = ({route, navigation}) => {
           style={{width: 370}}
           placeholder="ค้นหาโรค"
           onChangeText={(text) => searchFilterFunction(text)}
-          value={search}
+          // value={search}
         />
       </View>
       <View>
