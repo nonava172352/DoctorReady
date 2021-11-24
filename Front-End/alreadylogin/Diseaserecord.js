@@ -15,19 +15,36 @@ import {
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {Picker} from '@react-native-picker/picker';
+import axios from 'axios';
+axios.defaults.timeout = 1000;
 
+import { useSelector, useDispatch } from "react-redux";
+import { diseActionSet, userActionSet } from "../store/action/actions"
 const Diseaserecord = () => {
-  const [username, SetUsername] = React.useState('');
-  const [password, SetPassword] = React.useState('');
+  const user = useSelector((state) => state.redu.user)
+  const [name, setName] = React.useState('');
+  const [haveAfever, sethaveAfever] = React.useState('');
   const [selectedLanguage, setSelectedLanguage] = useState();
+  const [pain, setPain] = React.useState('');
+  const [allergicDrug, setallergicDrug] = React.useState('');
+  const [more, setMore] = React.useState('');
+  axios({method:"get", url:`http://192.168.1.38:8083/getSymtom/${user.email}` }).then((response) =>{
+    if(response.data){
+      setName(response.data.symptom)
+      sethaveAfever(response.data.haveFever)
+      setSelectedLanguage(response.data.setSymptomDuration)
+      setPain(response.data.painPosition)
+      setallergicDrug(response.data.drugAllergy)
+      setMore(response.data.more)
+    }
+  })
 
-  console.log(selectedLanguage);
   return (
     <SafeAreaView style={styles.container}>
       <Text style={{fontSize: 35, paddingBottom: 20, paddingTop: 20}}>บันทึกอาการ</Text>
       <ScrollView>
-        <Text style={styles.font}>หัวข้ออาการ</Text>
-        <TextInput style={styles.input} />
+        <Text style={styles.font} >หัวข้ออาการ</Text>
+        <TextInput style={styles.input} onChangeText={setName} value={name}/>
 
         <Text style={styles.font}>ระยะเวลาของอาการ</Text>
         <Picker
@@ -42,23 +59,42 @@ const Diseaserecord = () => {
           <Picker.Item label="มากกว่า 14 วัน" value="มากกว่า 14 วัน" />
         </Picker>
 
+
         <Text style={styles.font}>มีไข้ไหม</Text>
-        <TextInput style={styles.input} />
+        <TextInput style={styles.input} onChangeText={sethaveAfever} value={haveAfever}/>
 
         <Text style={styles.font}>ปวดส่วนใดบ้าง</Text>
-        <TextInput style={styles.input} />
+        <TextInput style={styles.input} onChangeText={setPain} value={pain} />
 
         <Text style={styles.font}>ยาที่เเพ้</Text>
-        <TextInput style={styles.input} />
+        <TextInput style={styles.input} onChangeText={setallergicDrug} value={allergicDrug} />
 
         <Text style={styles.font}>อาการเพิ่มเติม</Text>
-        <TextInput style={styles.input} />
+        <TextInput style={styles.input} onChangeText={setMore} value={more} />
       </ScrollView>
       <ScrollView style={{width: 70, marginTop: 12}}>
         <Button
           title="บันทึก"
           color="green"
-          onPress={() => Alert.alert('Simple Button pressed')}
+          onPress={() =>{
+            axios({method:"post", url:"http://192.168.1.38:8083/symptom",
+            data:{
+              symptom:name,
+              symptomDuration:setSelectedLanguage ,
+              haveFever:haveAfever,
+              painPosition:pain,
+              drugAllergy:allergicDrug,
+              more:more,
+              email:user.email
+          }}).then((response) =>{
+            if(response.data){
+              console.log(response.data)
+              Alert.alert('บันทึกเรียบร้อยแล้ว')    
+            }else{
+              Alert.alert('ไม่สามารถติดต่อกับฐานข้อมูลได้:)')
+            }
+        })    
+          }}
         />
       </ScrollView>
     </SafeAreaView>

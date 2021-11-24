@@ -14,8 +14,9 @@ public class CreateSymptomCommand implements Serializable{
     private final String symptomID;
     private final String symptom;
     private final String symptomDuration;
-    private final boolean haveFever;
+    private final String haveFever;
     private final String  painPosition;
     private final String drugAllergy;
     private final String  more;
+    private final String email;
 }

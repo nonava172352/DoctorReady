@@ -53,11 +53,10 @@ public class DataCommandController {
                 .symptomID(UUID.randomUUID().toString())
                 .symptom(model.getSymptom())
                 .symptomDuration(model.getSymptomDuration())
-                .haveFever(model.isHaveFever())
+                .haveFever(model.getHaveFever())
                 .painPosition(model.getPainPosition())
                 .drugAllergy(model.getDrugAllergy())
-                .more(model.getMore())
-                .build();
+                .more(model.getMore()).email(model.getEmail()).build();
         String result;
 
         try {

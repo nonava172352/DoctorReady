@@ -2,6 +2,7 @@ package com.DataService.query.rest;
 
 import com.DataService.Rabbit.LoginRestModel;
 import com.DataService.query.AuthQuery;
+import com.DataService.query.FindSymptomQuery;
 import com.DataService.query.FindUserQuery;
 import org.axonframework.messaging.responsetypes.ResponseTypes;
 import org.axonframework.queryhandling.QueryGateway;
@@ -32,6 +33,12 @@ public class UserQueryController {
         List<UserRestModel> users = queryGateway.query(findUserQuery, ResponseTypes.multipleInstancesOf(UserRestModel.class)).join();
         return users;
 
+    }
+    @RabbitListener(queues = "getSymQueue")
+    public List<SymptomRestModel> getSymptom(){
+        FindSymptomQuery findSymptomQuery = new FindSymptomQuery();
+        List<SymptomRestModel> symptom = queryGateway.query(findSymptomQuery, ResponseTypes.multipleInstancesOf(SymptomRestModel.class)).join();
+        return symptom;
     }
 //    public List<UserRestModel> AuthLogin(){
 //        FindUserQuery findUserQuery = new FindUserQuery();

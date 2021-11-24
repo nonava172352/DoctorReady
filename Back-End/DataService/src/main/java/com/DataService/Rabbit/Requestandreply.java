@@ -5,6 +5,7 @@ import com.DataService.command.CreateUserCommand;
 import com.DataService.command.rest.CreateSymptomRestModel;
 import com.DataService.command.rest.CreateUserRestModel;
 import com.DataService.command.rest.DataCommandController;
+import com.DataService.query.rest.SymptomRestModel;
 import com.DataService.query.rest.UserRestModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -72,6 +73,22 @@ public class Requestandreply {
         }
 
         return "true";
+    }
+    @GetMapping(value = "getSymtom/{email}")
+    public SymptomRestModel getSymtom(@PathVariable("email") String email){
+        System.out.println(email);
+        List<SymptomRestModel> m = (List<SymptomRestModel>) rabbitTemplate.convertSendAndReceive("Direct", "getsymp", "");
+        SymptomRestModel result = null;
+        for(SymptomRestModel s: m){
+            if(s.getEmail().equals(email)){
+                result = s;
+                break;
+            }
+
+        }
+
+        return result;
+
     }
 
 }

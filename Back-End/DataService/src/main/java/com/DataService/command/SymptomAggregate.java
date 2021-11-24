@@ -16,10 +16,11 @@ public class SymptomAggregate {
     private String symptomID;
     private String symptom;
     private String symptomDuration;
-    private boolean haveFever;
+    private String haveFever;
     private String painPosition;
     private String drugAllergy;
     private String more;
+    private String email;
 
     public SymptomAggregate(){
     }
@@ -42,10 +43,11 @@ public class SymptomAggregate {
         this.symptomID = SymptomCreatedEvent.getSymptomID();
         this.symptom = SymptomCreatedEvent.getSymptom();
         this.symptomDuration = SymptomCreatedEvent.getSymptomDuration();
-        this.haveFever = SymptomCreatedEvent.isHaveFever();
+        this.haveFever = SymptomCreatedEvent.getHaveFever();
         this.painPosition = SymptomCreatedEvent.getPainPosition();
         this.drugAllergy = SymptomCreatedEvent.getDrugAllergy();
         this.more = SymptomCreatedEvent.getMore();
+        this.email = SymptomCreatedEvent.getEmail();
     }
 
 }

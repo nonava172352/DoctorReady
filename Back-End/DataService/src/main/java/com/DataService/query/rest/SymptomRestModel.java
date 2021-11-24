@@ -2,13 +2,16 @@ package com.DataService.query.rest;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 @Data
-public class SymptomRestModel {
+public class SymptomRestModel implements Serializable {
     private String symptomID;
     private String symptom;
     private String symptomDuration;
-    private boolean haveFever;
+    private String haveFever;
     private String painPosition;
     private String drugAllergy;
     private String more;
+    private String email;
 }
