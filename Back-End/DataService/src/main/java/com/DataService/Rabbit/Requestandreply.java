@@ -19,10 +19,17 @@ public class Requestandreply {
     private RabbitTemplate rabbitTemplate;
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String Register(@RequestBody CreateUserRestModel model) {
+    public UserRestModel Register(@RequestBody CreateUserRestModel model) {
         String m = (String) rabbitTemplate.convertSendAndReceive("Direct", "register", model);
-
-        return m;
+        UserRestModel userRest = new UserRestModel();
+        List<UserRestModel> alldata = (List<UserRestModel>) rabbitTemplate.convertSendAndReceive("Direct", "users", "");
+        for (UserRestModel i : alldata){
+            if(i.getUserID().equals(m)){
+                System.out.println(i);
+                userRest = i;
+            }
+        }
+        return userRest;
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -48,13 +55,23 @@ public class Requestandreply {
         return new ReadFileJson().getReadFileJson(n1);
     }
 
-    @PostMapping(value = "symptom")
+    @PostMapping(value = "/symptom")
     public String setSymtom(@RequestBody CreateSymptomRestModel model){
         System.out.println("Symtom");
 
         String m = (String) rabbitTemplate.convertSendAndReceive("Direct", "symptom", model);
       return m;
     };
+    @GetMapping(value="/check/{email}" )
+    public String getCheck(@PathVariable String email){
+        List<UserRestModel> m = (List<UserRestModel>) rabbitTemplate.convertSendAndReceive("Direct", "users", "");
+        for (UserRestModel i : m){
+            if(i.getEmail().equals(email)){
+                return "false";
+            }
+        }
 
+        return "true";
+    }
 
 }

@@ -21,6 +21,7 @@ import Cause from '../component/Cause';
 import { useSelector, useDispatch } from "react-redux";
 import { diseActionSet, userActionSet } from "../store/action/actions"
 // import { FaBeer } from 'react-icons/fa';
+// import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const MainNavigator = createNativeStackNavigator();
 
@@ -75,21 +76,25 @@ function Topstack() {
   )
 }
 
-function ToptabNavigator() {
+function ToptabNavigator({route, navigation}) {
+  // console.log("====")
+  // console.log(route.params)
   return (
-    <TopTab.Navigator
+    <MainNavigator.Navigator
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: '#FFFFFF',
         tabBarLabelStyle: { fontSize: 10, fontWeight: 'bold' },
         tabBarStyle: { backgroundColor: '#01B3CD' }
       }}>
-      <TopTab.Screen
+      <MainNavigator.Screen
         name="รายละเอียดโรค"
         component={Disease}
-        options={{ tabBarLabel: 'รายละเอียดโรค' }}/>
-      <TopTab.Screen
-        name="อาการ"
+        options={{ tabBarLabel: 'รายละเอียดโรค'}, {route:route}
+      }
+        />
+      {/* <TopTab.Screen
+        name="name2"
         component={Sympton}
         options={{ tabBarLabel: 'อาการ' }}/>
       <TopTab.Screen
@@ -99,8 +104,8 @@ function ToptabNavigator() {
       <TopTab.Screen
         name="ป้องกันโรค"
         component={Prevent}
-        options={{ tabBarLabel: 'หลักการป้องกันโรค' }}/>
-    </TopTab.Navigator>
+        options={{ tabBarLabel: 'หลักการป้องกันโรค' }}/> */}
+    </MainNavigator.Navigator>
   );
 }
 
@@ -128,7 +133,7 @@ function loginNavigator() {
       />
       <Bottomtab.Screen
         name="หน้าหลัก"
-        component={MainScreens}/>
+        component={Topstack}/>
       <Bottomtab.Screen
         name="โรงพยาบาลใกล้ฉัน"
         component={HospitalmapScreens}/>
@@ -186,7 +191,7 @@ function signup () {
 export default function MyNavigator() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.redu.user);
-  dispatch(userActionSet(''))
+  dispatch(userActionSet('test'))
   console.log(user)
   if (user != null) {
   return (
@@ -204,7 +209,7 @@ export default function MyNavigator() {
   );
   }
   else {
-    return (
+        return (
     <NavigationContainer>
       <MainNavigator.Navigator
         screenOptions={{

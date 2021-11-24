@@ -1,7 +1,5 @@
 import React from 'react';
 import {useState} from 'react';
-import {useSelector, useDispatch} from 'react-redux';
-import {diseActionSet} from '../store/action/actions';
 import {
   SafeAreaView,
   StyleSheet,
@@ -18,12 +16,29 @@ import {firebaseConfig} from '../firebase';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import CheckBox from '@react-native-community/checkbox';
+import { useSelector, useDispatch } from "react-redux";
+import { diseActionSet, userActionSet } from "../store/action/actions"
+import axios from 'axios';
+axios.defaults.timeout = 1000;
 
 const SignupScreens = () => {
-  const [username, SetUsername] = React.useState('');
-  const [password, SetPassword] = React.useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [email , setEmail] = useState('');
+  const [name, setName] = useState('');
+  const [weight, setWeight] = useState('');
+  const [height, setHeight] = useState('');
+  const [age, setAge] = useState('');
+  const [detail, setDetail] = useState('');
+
+  const dispatch = useDispatch();
+
+  const validateEmail = (email) => {
+    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+  }
+  // const [we]
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
-  console.log(username);
   return (
     <View>
       <View style={styles.font}>
@@ -33,25 +48,26 @@ const SignupScreens = () => {
         <View style={{marginLeft: '13%'}}>
           <TextInput
             style={styles.input}
-            // onChangeText={username}
+            onChangeText={setUsername}
             placeholder="Username"
             // value={username}
           />
           <TextInput
             style={styles.input}
-            // onChangeText={password}
+            onChangeText={setPassword}
             value={password}
+            secureTextEntry={true}
             placeholder="Password"
           />
           <TextInput
             style={styles.input}
-            // onChangeText={password}
+            onChangeText={setEmail}
 
             placeholder="Email"
           />
           <TextInput
             style={styles.input}
-            // onChangeText={password}
+            onChangeText={setName}
 
             placeholder="ชื่อ-นามสกุล"
           />
@@ -64,13 +80,13 @@ const SignupScreens = () => {
             }}>
             <TextInput
               style={styles.boder}
-              // onChangeText={password}
+              onChangeText={setWeight}
 
               placeholder="น้ำหนัก"
             />
             <TextInput
               style={{width: 125, height: 40, borderRadius: 5, borderWidth: 1, padding: 10}}
-              // onChangeText={password}
+              onChangeText={setHeight}
 
               placeholder="ส่วนสูง"
             />
@@ -78,12 +94,12 @@ const SignupScreens = () => {
 
           <TextInput
             style={styles.input}
-            onChangeText={password}
+            onChangeText={setAge}
             placeholder="อายุ"
           />
           <TextInput
             style={styles.input}
-            // onChangeText={password}
+            onChangeText={setDetail}
 
             placeholder="โรคประจำตัว"
           />
@@ -94,6 +110,31 @@ const SignupScreens = () => {
           title="Signup"
           color='green'
           //   onPress={() => {Alert.alert('Simple Button pressed')}
+            onPress={() => {
+              if(username == "" || password == "" || email =="" || name == ""|| weight == ""|| height == ""|| age == "" || detail == ""){
+                Alert.alert("กรุณากรอกข้อมูลให้ครบถ้วน")
+              }
+              else if(password.length < 8){
+                Alert.alert('รหัสผ่านต้องมากกว่า 8 ตัว')  
+              }else if(!validateEmail(email)){
+                Alert.alert('รูปแบบ email ไม่ถูกต้อง')
+              }else{
+
+                axios({method:"post", url:"http://192.168.1.38:8083/register", data:{email : email, password:password, username:username , name: name, weight:weight, height: height, detail: detail} }).then(
+                  (response) =>{
+                    dispatch(userActionSet(response.data))
+                    console.log(response.data)
+                  
+                  }
+                ).catch((error) => {console.log(error) 
+                  Alert.alert('ไม่สามารถเชื่อมต่อกับ Database ได้')})
+                
+              }
+
+
+          
+          }
+        }
         />
       </View>
     </View>

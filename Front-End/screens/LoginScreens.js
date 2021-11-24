@@ -17,16 +17,14 @@ import CheckBox from '@react-native-community/checkbox';
 import axios from 'axios';
 import { useSelector, useDispatch } from "react-redux";
 import { diseActionSet, userActionSet } from "../store/action/actions"
-
 const LoginScreens = ({navigation}) => {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.redu.user)
-  
-  
-  
+  axios.defaults.timeout = 1000;
+
   return (
     
     <SafeAreaView style={styles.container}>
@@ -66,13 +64,12 @@ const LoginScreens = ({navigation}) => {
           }else if(password == ""){
             Alert.alert('กรุณากรอก Password')            
           }else{
-            axios({method:"post", url:"http://192.168.1.38:8082/login", data:{email : email, password:password} }).then((response) =>{
+            axios({method:"post", url:"http://192.168.1.38:8083/login", data:{email : email, password:password} }).then((response) =>{
               if(response.data){
                 dispatch(userActionSet(response.data))
                 Alert.alert('Login สำเร็จ')    
               }else{
-                Alert.alert('email หรือ password ไม่ถูกต้อง :)')    
-                
+                Alert.alert('email หรือ password ไม่ถูกต้อง :)')
               }
           })    
 

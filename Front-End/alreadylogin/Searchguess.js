@@ -20,7 +20,52 @@ const Searchguess = () => {
   const [selectedId, setSelectedId] = useState(null);
 
   const [search, setSearch] = useState('');
+  const [collect, setCollect] = useState([]);
+  const [Filterseacrh, setFilterFunction] = useState('');
   
+  const addArray = () => {
+    setCollect([...collect, search]);
+    setSearch('')
+  }
+
+  const ItemView = ({item}) => {
+    return (
+      <TouchableOpacity
+      style={{
+        marginLeft: 12,
+        marginBottom: 7,
+        backgroundColor: 'black',
+        width: 370,
+        borderRadius: 15
+      }}>
+
+      <Text style={{fontSize: 17, padding: 15, color: "white"}} onPress={() => {
+        
+      }}>
+        {item}
+      </Text>
+      </TouchableOpacity>
+    );
+  };
+
+  const searchFil = (collect) => {
+    if (collect) {
+      const newData = collect.filter(function (item) {
+        const itemData = item.disease
+          // ? item.disease.toUpperCase()
+          // : ''.toUpperCase();
+        const collectData = collect;
+        return itemData.indexOf(collectData) > -1;
+      });
+      setFilterFunction(newData);
+      // setSearch(collect);
+    } else {
+      setFilterFunction(namedi);
+      // setSearch(collect);
+    }
+  };
+
+  console.log(collect)
 
   return (
     <SafeAreaView>
@@ -31,17 +76,48 @@ const Searchguess = () => {
         <Searchbar
           style={{width: 300}}
           placeholder="โปรดใส่อาการอย่างน้อย 1 อาการ"
+          onChangeText={(text) => setSearch(text)}
           value={search}
+          
         />
         <View style={{height: 44,justifyContent: "center", marginLeft: 10}}>
         <Button
           title="+"
           color="green"
-          onPress={() => Alert.alert('Simple Button pressed')}
+          onPress={() => addArray()}
         />
         </View>
         
       </View>
+      <View>
+      <FlatList
+          data={collect}
+          renderItem={ItemView}
+        />
+        </View>
+
+        <View>
+        <View style={{width: '20%', marginLeft: '77%', marginBottom: 3}}>
+        <Button
+          title="search"
+          color="#01B3CD"
+          onPress={() => searchFil(collect)}
+        />
+        </View>
+        <View style={{width: '20%', marginLeft: '77%'}}>
+        <Button
+          title="clear"
+          color="red"
+          onPress={() => setCollect('')}
+        />
+        </View>
+        </View>
+        <View style={{marginTop: 7}}>
+        <FlatList
+          data={Filterseacrh}
+          renderItem={ItemView}
+        />
+        </View>
       {/* <View>
       <List.Item
           title="โรคเบาหวาน"
