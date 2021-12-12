@@ -42,7 +42,7 @@ const MainScreens = ({route, navigation}) => {
   const [namedi, setNamedi] = useState([]);
   const dispatch = useDispatch()
 
-  // console.log(masterDataSource)
+  // console.log(listdi)
   useEffect(() => {
     setFilteredDataSource(listdi);
     setNamedi(listdi);
