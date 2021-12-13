@@ -1,18 +1,21 @@
 package com.DataService.Rabbit;
 
 import com.DataService.ReadFileJson;
-import com.DataService.command.CreateUserCommand;
 import com.DataService.command.rest.CreateSymptomRestModel;
 import com.DataService.command.rest.CreateUserRestModel;
-import com.DataService.command.rest.DataCommandController;
 import com.DataService.query.rest.SymptomRestModel;
 import com.DataService.query.rest.UserRestModel;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.*;
 
 @RestController
 public class Requestandreply {
@@ -91,4 +94,78 @@ public class Requestandreply {
 
     }
 
+
+    @PostMapping(value ="arkans")
+    public List<Map.Entry<Object, Integer>> process(@RequestBody LinkedHashMap<String, ArrayList<String>> list){
+        JSONParser jsonParser = new JSONParser();
+        ArrayList namelist= new ArrayList();
+        try {
+            FileReader reader = new FileReader("C:\\Users\\flukg\\Mobile Project\\DoctorReady\\Back-End\\DataService\\src\\main\\java\\com\\DataService\\sop.json");
+            Object obj = jsonParser.parse(reader);
+            JSONObject jsonOBJ = (JSONObject) obj;
+            namelist = (ArrayList) jsonOBJ.get("namelist");
+
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        ArrayList input = list.get("arkan");
+        ArrayList<String> have_diseases = new ArrayList();
+        ArrayList<String> have_disease = new ArrayList();
+        for(int i = 0;i<namelist.size();i++){
+        JSONObject obj = (JSONObject) namelist.get(i);
+        ArrayList disease = (ArrayList) obj.get("findSymptom");
+            for (Object j : input){
+                for (Object k : disease){
+                    if(j.equals(k)){
+                        if(have_disease.size() == 0) {
+
+                            have_disease.add( ((String)((JSONObject) namelist.get(i)).get("name")));
+                        }else{
+                            Integer size = have_disease.size();
+                            Integer check = 0;
+                            for (int l = 0;l<size;l++){
+                                if(have_disease.get(l).equals(((String) ((JSONObject) namelist.get(i)).get("name")))){
+                                    check = 1;
+                                }
+                            }
+                            if (check == 0){
+                                have_disease.add(((String) ((JSONObject) namelist.get(i)).get("name")));
+                            }
+                        }
+                        have_diseases.add((String) ((JSONObject) namelist.get(i)).get("name"));
+
+                    }
+
+                }
+            }
+        }
+        Map<Object, Integer> result = new LinkedHashMap<>();
+
+        for(Object obj : have_disease){
+            result.put(obj,0);
+        }
+        for(String str : have_disease){
+            for(String strs : have_diseases){
+                if(str.equals(strs)){
+                    result.put(str, result.get(str)+1);
+
+                }
+            }
+        }
+        Set<Map.Entry<Object, Integer>> entrySet = result.entrySet();
+        List<Map.Entry<Object, Integer>> ans = new ArrayList<>(entrySet);
+        Collections.sort(ans, new Comparator<Map.Entry<Object, Integer>>() {
+            @Override
+            public int compare(Map.Entry<Object, Integer> o1, Map.Entry<Object, Integer> o2) {
+                return o2.getValue().compareTo(o1.getValue());
+            }
+        });
+        return ans;
+
+    }
 }

@@ -23,6 +23,7 @@ public class ReadFileJson {
             Object obj = jsonParser.parse(reader);
             JSONObject jsonOBJ = (JSONObject) obj;
             namelist = (ArrayList) jsonOBJ.get("namelist");
+            System.out.println(namelist.get(0));
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
