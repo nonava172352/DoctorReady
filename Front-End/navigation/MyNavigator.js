@@ -57,6 +57,29 @@ function NotloginNavigator() {
   );
 }
 
+
+
+function ToptabNavigator({route, navigation}) {
+  // console.log("====")
+  // console.log(route.params)
+  return (
+    <MainNavigator.Navigator
+      screenOptions={{
+        headerShown: false,
+        tabBarActiveTintColor: '#FFFFFF',
+        tabBarLabelStyle: { fontSize: 10, fontWeight: 'bold' },
+        tabBarStyle: { backgroundColor: '#01B3CD' }
+      }}>
+      <MainNavigator.Screen
+        name="รายละเอียดโรค"
+        component={Disease}
+        options={{ tabBarLabel: 'รายละเอียดโรค'}, {route:route}
+      }
+        />
+    </MainNavigator.Navigator>
+  );
+}
+
 function Topstack() {
   return (
     <MainNavigator.Navigator
@@ -76,39 +99,6 @@ function Topstack() {
   )
 }
 
-function ToptabNavigator({route, navigation}) {
-  // console.log("====")
-  // console.log(route.params)
-  return (
-    <MainNavigator.Navigator
-      screenOptions={{
-        headerShown: false,
-        tabBarActiveTintColor: '#FFFFFF',
-        tabBarLabelStyle: { fontSize: 10, fontWeight: 'bold' },
-        tabBarStyle: { backgroundColor: '#01B3CD' }
-      }}>
-      <MainNavigator.Screen
-        name="รายละเอียดโรค"
-        component={Disease}
-        options={{ tabBarLabel: 'รายละเอียดโรค'}, {route:route}
-      }
-        />
-      {/* <TopTab.Screen
-        name="name2"
-        component={Sympton}
-        options={{ tabBarLabel: 'อาการ' }}/>
-      <TopTab.Screen
-        name="สาเหตุ"
-        component={Cause}
-        options={{ tabBarLabel: 'สาเหตุ' }}/>
-      <TopTab.Screen
-        name="ป้องกันโรค"
-        component={Prevent}
-        options={{ tabBarLabel: 'หลักการป้องกันโรค' }}/> */}
-    </MainNavigator.Navigator>
-  );
-}
-
 function loginNavigator() {
   return (
     <Bottomtab.Navigator
@@ -123,7 +113,7 @@ function loginNavigator() {
       >
       <Bottomtab.Screen
         name="คาดคะเนโรค"
-        component={Searchguess}
+        component={searchscreen}
         options={{
           tabBarLabel: 'คาดคะเนโรค',
           // tabBarIcon: ({ color, size }) => (
@@ -143,6 +133,27 @@ function loginNavigator() {
     </Bottomtab.Navigator>
   );
 }
+
+function searchscreen() {
+  return (
+    <MainNavigator.Navigator
+    initialRouteName="searchscreen"
+      screenOptions={{
+          headerShown: false,
+        }}>
+    <MainNavigator.Screen
+        name="searchscreen"
+        component={Searchguess}>
+        </MainNavigator.Screen>
+        <MainNavigator.Screen
+        name="SearchDetailScreen"
+        component={SearchDetail}>
+        </MainNavigator.Screen>
+  </MainNavigator.Navigator>
+  )
+}
+
+
 
 function Personal () {
   return (

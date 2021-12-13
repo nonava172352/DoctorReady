@@ -19,7 +19,7 @@ import listdisease from '../models/listdisease';
 
 import DropDownPicker from 'react-native-dropdown-picker';
 
-const Searchguess = () => {
+const Searchguess = ({route, navigation}) => {
   const [selectedId, setSelectedId] = useState(null);
 
   // const [search, setSearch] = useState(null);
@@ -117,7 +117,7 @@ const Searchguess = () => {
     // }
   };
 
-  console.log(collect)
+  // console.log(collect)
 
   return (
     <SafeAreaView>
@@ -164,7 +164,12 @@ const Searchguess = () => {
           <Button
             title="search"
             color="#01B3CD"
-            onPress={() => (setFinal(Filterseacrh))}
+            // onPress={() => (setFinal(Filterseacrh))}
+            onPress={() => {
+              return(
+                navigation.navigate("searchscreen", {screen:"SearchDetailScreen"})
+              )
+            }}
           />
         </View>
         <View style={{width: '96%', marginLeft: '2%', zIndex: -1}}>
