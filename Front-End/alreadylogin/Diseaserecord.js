@@ -28,6 +28,7 @@ const Diseaserecord = () => {
   const [pain, setPain] = React.useState('');
   const [allergicDrug, setallergicDrug] = React.useState('');
   const [more, setMore] = React.useState('');
+  const [date, setDate] = useState(new Date());
   axios({method:"get", url:`http://192.168.1.38:8083/getSymtom/${user.email}` }).then((response) =>{
     if(response.data){
       setName(response.data.symptom)
@@ -43,6 +44,10 @@ const Diseaserecord = () => {
     <SafeAreaView style={styles.container}>
       <Text style={{fontSize: 35, paddingBottom: 20, paddingTop: 20}}>บันทึกอาการ</Text>
       <ScrollView>
+      <Calendar
+        onChange={setDate}
+        value={date}
+      />
         <Text style={styles.font} >หัวข้ออาการ</Text>
         <TextInput style={styles.input} onChangeText={setName} value={name}/>
 
@@ -77,7 +82,7 @@ const Diseaserecord = () => {
           title="บันทึก"
           color="green"
           onPress={() =>{
-            axios({method:"post", url:"http://192.168.1.38:8083/symptom",
+            axios({method:"post", url:"http://192.168.1.40:8083/symptom",
             data:{
               symptom:name,
               symptomDuration:setSelectedLanguage ,
