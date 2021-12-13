@@ -117,7 +117,7 @@ const Searchguess = () => {
     // }
   };
 
-  // console.log(collect)
+  console.log(collect)
 
   return (
     <SafeAreaView>
