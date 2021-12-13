@@ -23,25 +23,31 @@ const Searchguess = () => {
   const [selectedId, setSelectedId] = useState(null);
 
   // const [search, setSearch] = useState(null);
-  const [collect, setCollect] = useState([]);
+  
   const [Filterseacrh, setFilterFunction] = useState([]);
+  const [final, setFinal] = useState([]);
   const [count, setCount] = useState(0);
-
+  const [collect, setCollect] = useState([]);
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([
-    {label:'ปัสสาวะบ่อย',value:'ปัสสาวะบ่อย'},
-    {label:'ระดับน้ำตาลในเลือดสูง',value:'ระดับน้ำตาลในเลือดสูง'}
+    {label:'หิวบ่อย',value:'หิวบ่อย'},
+    {label:'เวียนศีรษะ',value:'เวียนศีรษะ'}
   ]);
-  console.log(collect)
+  
 
   const addArray = () => {
+    
     if (value != null) {
       setCollect([...collect, value]);
+      console.log(collect)
       setValue(null);
+      searchFil(collect);
+      
     } else {
       setValue(null);
     }
+    
   };
 
   const ItemView = ({item}) => {
@@ -82,7 +88,7 @@ const Searchguess = () => {
     );
   };
 
-  console.log(Filterseacrh);
+  // console.log(Filterseacrh);
   const searchFil = collect => {
     // console.log(collect.length)
     // console.log(listdi[0].findsympton[1])
@@ -146,7 +152,7 @@ const Searchguess = () => {
           value={search}
         /> */}
         <View style={{height: 44, justifyContent: 'center', marginLeft: 10}}>
-          <Button title="+" color="green" onPress={() => addArray()} />
+          <Button title="+" color="green" onPress={() => (addArray())} />
         </View>
       </View>
       <View style={{zIndex: -1}}>
@@ -154,23 +160,23 @@ const Searchguess = () => {
       </View>
 
       <View>
-        <View style={{width: '20%', marginLeft: '77%', marginBottom: 3, zIndex: -1}}>
+        <View style={{width: '96%', marginLeft: '2%', marginBottom: 3, zIndex: -1}}>
           <Button
             title="search"
             color="#01B3CD"
-            onPress={() => searchFil(collect)}
+            onPress={() => (setFinal(Filterseacrh))}
           />
         </View>
-        <View style={{width: '20%', marginLeft: '77%', zIndex: -1}}>
+        <View style={{width: '96%', marginLeft: '2%', zIndex: -1}}>
           <Button
             title="clear"
             color="red"
-            onPress={() => (setCollect(''), setFilterFunction([]))}
+            onPress={() => (setCollect(''), setFilterFunction([]), setFinal([]))}
           />
         </View>
       </View>
       <View style={{marginTop: 7}}>
-        <FlatList data={Filterseacrh} renderItem={ItemView2} />
+        <FlatList data={final} renderItem={ItemView2} />
       </View>
     </SafeAreaView>
   );
