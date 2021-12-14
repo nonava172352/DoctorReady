@@ -10,7 +10,6 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@expo/vector-icons": "^12.0.5",
     "@react-native-community/checkbox": "^0.5.9",
     "@react-native-community/datetimepicker": "^5.0.1",
     "@react-native-community/geolocation": "^2.0.2",
@@ -21,21 +20,19 @@
     "@react-navigation/native": "^6.0.6",
     "@react-navigation/native-stack": "^6.2.5",
     "axios": "^0.24.0",
-    "react": "17.0.2",
+    "install": "^0.13.0",
+    "react": "^17.0.2",
     "react-icons": "^4.3.1",
     "react-native": "^0.66.1",
     "react-native-check-box": "^2.1.7",
     "react-native-datepicker": "^1.7.2",
     "react-native-dropdown-picker": "^5.2.3",
-    "react-native-dynamic-search-bar": "^2.0.2",
     "react-native-elements": "^3.4.2",
-    "react-native-ionicons": "^4.6.5",
     "react-native-label": "0.0.1-alpha.1",
     "react-native-maps": "0.29.4",
     "react-native-pager-view": "^5.4.9",
     "react-native-paper": "^4.10.0",
     "react-native-permissions": "^3.1.0",
-    "react-native-platform-searchbar": "^1.1.2",
     "react-native-safe-area-context": "^3.3.2",
     "react-native-screens": "^3.9.0",
     "react-native-search-filter": "^0.1.5",
@@ -43,7 +40,8 @@
     "react-native-tab-view": "^3.1.1",
     "react-native-vector-icons": "^9.0.0",
     "react-redux": "^7.2.6",
-    "redux": "^4.1.2"
+    "redux": "^4.1.2",
+    "uninstall": "0.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
