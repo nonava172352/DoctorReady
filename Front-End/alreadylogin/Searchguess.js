@@ -23,7 +23,7 @@ const Searchguess = ({route, navigation}) => {
   const [selectedId, setSelectedId] = useState(null);
 
   // const [search, setSearch] = useState(null);
-  
+
   const [Filterseacrh, setFilterFunction] = useState([]);
   const [final, setFinal] = useState([]);
   const [count, setCount] = useState(0);
@@ -31,23 +31,19 @@ const Searchguess = ({route, navigation}) => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([
-    {label:'หิวบ่อย',value:'หิวบ่อย'},
-    {label:'เวียนศีรษะ',value:'เวียนศีรษะ'}
+    {label: 'หิวบ่อย', value: 'หิวบ่อย'},
+    {label: 'เวียนศีรษะ', value: 'เวียนศีรษะ'},
   ]);
-  
 
   const addArray = () => {
-    
     if (value != null) {
       setCollect([...collect, value]);
-      console.log(collect)
+      console.log(collect);
       setValue(null);
       searchFil(collect);
-      
     } else {
       setValue(null);
     }
-    
   };
 
   const ItemView = ({item}) => {
@@ -120,9 +116,14 @@ const Searchguess = ({route, navigation}) => {
   // console.log(collect)
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{backgroundColor: 'white'}}>
       <View style={styles.font}>
-        <Text style={{fontSize: 35, color: '#01B3CD'}}>
+        <Text
+          style={{
+            fontSize: 35,
+            color: '#01B3CD',
+            fontFamily: 'Prompt-Regular',
+          }}>
           คาดคะเนโรคเบื้องต้น
         </Text>
       </View>
@@ -135,15 +136,41 @@ const Searchguess = ({route, navigation}) => {
           marginBottom: 10,
         }}>
         <View style={{width: '85%'}}>
-        <DropDownPicker
-          placeholder="โปรดเลือกอาการอย่างน้อย 1 อาการ"
-          open={open}
-          value={value}
-          items={items}
-          setOpen={setOpen}
-          setValue={setValue}
-          setItems={setItems}
-        />
+          <DropDownPicker
+            placeholder="โปรดเลือกอาการอย่างน้อย 1 อาการ"
+            open={open}
+            value={value}
+            items={items}
+            setOpen={setOpen}
+            setValue={setValue}
+            setItems={setItems}
+            style={{
+              borderWidth: 0,
+              borderRadius: 5,
+              shadowColor: '#000',
+              shadowOffset: {
+                width: 0,
+                height: 2,
+              },
+              shadowOpacity: 0.23,
+              shadowRadius: 2.62,
+              elevation: 4,
+              
+            }}
+            dropDownContainerStyle={{
+              borderWidth: 0,
+              borderRadius: 5,
+              shadowColor: '#000',
+              shadowOffset: {
+                width: 0,
+                height: 2,
+              },
+              shadowOpacity: 0.23,
+              shadowRadius: 2.62,
+              elevation: 4,
+              
+            }}
+          />
         </View>
         {/* <Searchbar
           style={{width: 300}}
@@ -152,7 +179,7 @@ const Searchguess = ({route, navigation}) => {
           value={search}
         /> */}
         <View style={{height: 44, justifyContent: 'center', marginLeft: 10}}>
-          <Button title="+" color="green" onPress={() => (addArray())} />
+          <Button title="+" color="green" onPress={() => addArray()} />
         </View>
       </View>
       <View style={{zIndex: -1}}>
@@ -160,15 +187,17 @@ const Searchguess = ({route, navigation}) => {
       </View>
 
       <View>
-        <View style={{width: '96%', marginLeft: '2%', marginBottom: 3, zIndex: -1}}>
+        <View
+          style={{width: '96%', marginLeft: '2%', marginBottom: 3, zIndex: -1}}>
           <Button
             title="search"
             color="#01B3CD"
             // onPress={() => (setFinal(Filterseacrh))}
             onPress={() => {
-              return(
-                navigation.navigate("searchscreen", {screen:"SearchDetailScreen"})
-              )
+              return navigation.navigate('คาดคะเนโรค', {
+                screen: 'SearchDetailScreen',
+                params: {collect: collect},
+              });
             }}
           />
         </View>
@@ -176,7 +205,9 @@ const Searchguess = ({route, navigation}) => {
           <Button
             title="clear"
             color="red"
-            onPress={() => (setCollect(''), setFilterFunction([]), setFinal([]))}
+            onPress={() => (
+              setCollect(''), setFilterFunction([]), setFinal([])
+            )}
           />
         </View>
       </View>

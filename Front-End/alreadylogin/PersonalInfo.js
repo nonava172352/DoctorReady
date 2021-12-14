@@ -26,7 +26,7 @@ const PersonalInfo = ({navigation}) => {
   return (
     <SafeAreaView>
       <View style={styles.font}>
-        <Text style={{fontSize: 35, color: '#01B3CD'}}>ข้อมูลส่วนตัว</Text>
+        <Text style={{fontSize: 35, color: '#01B3CD', fontFamily: 'Prompt-Regular'}}>ข้อมูลส่วนตัว</Text>
       </View>
       <View style={{marginBottom: 50}}>
         <List.Item

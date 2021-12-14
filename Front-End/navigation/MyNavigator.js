@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
+import {Image, StyleSheet, View} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import LoginScreens from '../screens/LoginScreens';
@@ -20,8 +20,6 @@ import Prevent from '../component/Prevent';
 import Cause from '../component/Cause';
 import { useSelector, useDispatch } from "react-redux";
 import { diseActionSet, userActionSet } from "../store/action/actions"
-// import { FaBeer } from 'react-icons/fa';
-// import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const MainNavigator = createNativeStackNavigator();
 
@@ -38,21 +36,37 @@ function NotloginNavigator() {
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: '#FFFFFF',
-        tabBarLabelStyle: { fontSize: 10, fontWeight: 'bold' },
-        tabBarStyle: { backgroundColor: '#01B3CD' },
+        tabBarLabelStyle: { fontSize: 12, fontFamily: 'Prompt-Regular', marginBottom: 10},
+        tabBarStyle: { backgroundColor: 'black', height: '10%'},
       }}>
       <Bottomtab.Screen
         name="toLogin"
         component={LoginScreens}
-        options={{ tabBarLabel: 'Login'}}/>
+        options={{ tabBarLabel: 'Login',
+        tabBarIcon: ({focused}) => (
+          <View>
+            <Image source={{uri:'https://cdn-icons-png.flaticon.com/512/295/295128.png'}} style={{height: 32, width:32, marginTop:5 }} />
+          </View>
+        )}}/>
       <Bottomtab.Screen
         name="หน้าหลัก"
         component={Topstack}
-        options={{ tabBarLabel: 'หน้าหลัก' }}/>
+        options={{ tabBarLabel: 'หน้าหลัก',
+          tabBarIcon: ({focused}) => (
+            <View>
+              <Image source={{uri:'https://iconarchive.com/download/i85581/graphicloads/100-flat/home.ico'}} style={{height: 32, width:32, marginTop:5 }} />
+            </View>
+          )
+        }}/>
       <Bottomtab.Screen
         name="โรงพยาบาลใกล้ฉัน"
         component={HospitalmapScreens}
-        options={{ tabBarLabel: 'โรงพยาบาลใกล้ฉัน' }}/>
+        options={{ tabBarLabel: 'โรงพยาบาลใกล้ฉัน',
+        tabBarIcon: ({focused}) => (
+          <View>
+            <Image source={{uri:'https://image.flaticon.com/icons/png/512/504/504276.png'}} style={{height: 32, width:32, marginTop:5 }} />
+          </View>
+        ) }}/>
     </Bottomtab.Navigator>
   );
 }
@@ -106,9 +120,8 @@ function loginNavigator() {
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: '#FFFFFF',
-        tabBarLabelStyle: { fontSize: 10, fontWeight: 'bold' },
-        tabBarStyle: { backgroundColor: '#01B3CD' },
-        color: 'black'
+        tabBarLabelStyle: { fontSize: 12, fontFamily: 'Prompt-Regular', marginBottom: 10},
+        tabBarStyle: { backgroundColor: 'black', height: '10%'},
       }}
       >
       <Bottomtab.Screen
@@ -116,20 +129,43 @@ function loginNavigator() {
         component={searchscreen}
         options={{
           tabBarLabel: 'คาดคะเนโรค',
-          // tabBarIcon: ({ color, size }) => (
-          //   <FaBeer name="home" color={color} size={size}/>
-          // ),
+          tabBarIcon: ({focused}) => (
+            <View>
+              <Image source={{uri:'https://www.seekpng.com/png/full/65-659532_magnifying-glass-icon-no-background-magnifying-glass-icon.png'}} style={{height: 32, width:32, marginTop:5 }} />
+            </View>
+          )
         }}
       />
       <Bottomtab.Screen
         name="หน้าหลัก"
-        component={Topstack}/>
+        component={Topstack}
+        options={{
+          tabBarIcon: ({focused}) => (
+            <View>
+              <Image source={{uri:'https://iconarchive.com/download/i85581/graphicloads/100-flat/home.ico'}} style={{height: 32, width:32, marginTop:5 }} />
+            </View>
+          )
+        }}/>
       <Bottomtab.Screen
         name="โรงพยาบาลใกล้ฉัน"
-        component={HospitalmapScreens}/>
+        component={HospitalmapScreens}
+        options={{
+          tabBarIcon: ({focused}) => (
+            <View>
+              <Image source={{uri:'https://image.flaticon.com/icons/png/512/504/504276.png'}} style={{height: 32, width:32, marginTop:5 }} />
+            </View>
+          )
+        }}/>
       <Bottomtab.Screen
         name="ข้อมูลส่วนตัว"
-        component={PersonalInfo}/>
+        component={PersonalInfo}
+        options={{
+          tabBarIcon: ({focused}) => (
+            <View>
+              <Image source={{uri:'https://purepng.com/public/uploads/large/purepng.com-settings-icon-android-lollipopsymbolsiconsgooglegoogle-iconsandroid-lollipoplollipop-iconsandroid-50-721522597280v9qzl.png'}} style={{height: 32, width:32, marginTop:5 }} />
+            </View>
+          )
+        }}/>
     </Bottomtab.Navigator>
   );
 }

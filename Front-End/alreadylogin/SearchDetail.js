@@ -16,18 +16,18 @@ import {
 import {Searchbar} from 'react-native-paper';
 
 
-const SearchDetail = () => {
+const SearchDetail = ({route, navigation}) => {
   const [selectedId, setSelectedId] = useState(null);
   const [search, setSearch] = useState('');
-  
 
+  console.log(route.params.collect)
   return (
     <SafeAreaView>
       <View style={styles.Headers}>
-        <Text style={{fontSize: 35}}>คาดคะเนโรคเบื้องต้น</Text>
+        <Text style={{fontSize: 35}}>โรคที่ตรงกับอาการ</Text>
       </View>
       <View style={styles.head}>
-        <Text style={{fontSize: 25}}>โรคที่มีอาการข้างต้น</Text>
+        <Text style={{fontSize: 25}}>{route.params.collect}</Text>
       </View>
       
       <View>

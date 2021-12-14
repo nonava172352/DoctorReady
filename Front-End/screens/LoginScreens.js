@@ -28,7 +28,7 @@ const LoginScreens = ({navigation}) => {
   return (
     
     <SafeAreaView style={styles.container}>
-      <Text style={{fontSize: 50, paddingBottom: 20, fontFamily: 'sans-serif-medium', color: '#01B3CD'}}>DoctorReady</Text>
+      <Text style={{fontSize: 50, paddingBottom: 20, fontFamily: 'sans-serif-medium', color: '#01B3CD', fontFamily: 'Prompt-Italic'}}>DoctorReady</Text>
       <TextInput
         style={styles.input}
         onChangeText={setEmail}
