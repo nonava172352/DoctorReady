@@ -17,8 +17,17 @@ import {
 import {Searchbar, List} from 'react-native-paper';
 
 const Disease = ({route, navigation}) => {
-  console.log("===1")
-  console.log(route)
+
+  
+  const symptom_text = (input)=>{
+    let text = ""
+    for(var i = 0 ;i < input.length;i++){
+      text += input[i]+"\n";
+    }
+
+    return text;
+    
+  }
   return (
     <ScrollView>
       <View style={styles.font}>
@@ -30,7 +39,8 @@ const Disease = ({route, navigation}) => {
         </View>
         <View>
           <Text style={{fontSize: 15}}>
-          {route.params.sympton}
+          {symptom_text(route.params.sympton)}
+          
           </Text>
         </View>
       </View>

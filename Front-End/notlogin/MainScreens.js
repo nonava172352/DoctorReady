@@ -18,6 +18,7 @@ import {List, Searchbar} from 'react-native-paper';
 import axios from "axios"
 import { diseActionSet } from "../store/action/actions"
 import { listdi } from "../data/disease-data"
+console.log(listdi)
 
 // const Item = ({item}) => (
 //   <TouchableOpacity
@@ -41,8 +42,7 @@ const MainScreens = ({route, navigation}) => {
   const [masterDataSource, setMasterDataSource] = useState([]);
   const [namedi, setNamedi] = useState([]);
   const dispatch = useDispatch()
-
-  // console.log(listdi)
+  console.log("mainScreens")
   useEffect(() => {
     setFilteredDataSource(listdi);
     setNamedi(listdi);

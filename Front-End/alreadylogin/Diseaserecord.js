@@ -31,7 +31,6 @@ const Diseaserecord = () => {
   const [pain, setPain] = React.useState('');
   const [allergicDrug, setallergicDrug] = React.useState('');
   const [more, setMore] = React.useState('');
-  const [date, setDate] = useState(new Date());
   axios({method:"get", url:`http://192.168.1.38:8083/getSymtom/${user.email}` }).then((response) =>{
     if(response.data){
       setName(response.data.symptom)
@@ -44,18 +43,12 @@ const Diseaserecord = () => {
   })
 
   const [currentDate, setCurrentData] = useState('');
-  
   // console.log(currentDate);
-
-  const [date, setDate] = useState(new Date(1598051730000));
+  const [date, setDate] = useState(new Date());
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
 
   const [gettime, setGettime] = useState([]);
-
-  console.log(date)
-
-  console.log(gettime)
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;

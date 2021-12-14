@@ -13,8 +13,7 @@ const styles = StyleSheet.create({
 });
 
 export default function HospitalmapScreens(){
-  baseURL =
-    'https://www.emergency.wa.gov.au/data/incident_FCAD.json';
+  baseURL = 'https://www.emergency.wa.gov.au/data/incident_FCAD.json';
   const [info, setInfo] = useState([]);
 
   // const [locate, setLocate] = useState({

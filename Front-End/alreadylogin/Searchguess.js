@@ -16,7 +16,18 @@ import {
 import {Searchbar, List} from 'react-native-paper';
 import {listdi} from '../data/disease-data';
 import listdisease from '../models/listdisease';
+import axios from 'axios';
+import select from "../models/select"
 
+axios.defaults.timeout = 1000;
+const [item, setItem] = useState([])
+axios.get("http://192.168.1.40:8083/allarkarn").then(response =>{
+  let data = response.data;
+    for(var i = 0; i < data.length; i++ ){
+      setItem([...item, data[i]])
+    }
+    console.log(item)
+})
 import DropDownPicker from 'react-native-dropdown-picker';
 
 const Searchguess = ({route, navigation}) => {

@@ -66,6 +66,37 @@ public class Requestandreply {
         String m = (String) rabbitTemplate.convertSendAndReceive("Direct", "symptom", model);
       return m;
     };
+    @GetMapping(value = "/allarkarn")
+    public Set<String> allarken(){
+        Set<String> ans = new HashSet<>();
+        JSONParser jsonParser = new JSONParser();
+        ArrayList namelist= new ArrayList();
+        try {
+            FileReader reader = new FileReader("C:\\Users\\flukg\\Mobile Project\\DoctorReady\\Back-End\\DataService\\src\\main\\java\\com\\DataService\\sop.json");
+            Object obj = jsonParser.parse(reader);
+            JSONObject jsonOBJ = (JSONObject) obj;
+            namelist = (ArrayList) jsonOBJ.get("namelist");
+
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        for(var i = 0;i< namelist.size(); i++){
+            JSONObject obj = (JSONObject) namelist.get(i);
+            ArrayList<String> array = (ArrayList<String>) obj.get("findSymptom");
+            for(Object j :  array){
+                ans.add((String) j);
+
+            }
+        }
+        return ans;
+
+    }
+
     @GetMapping(value="/check/{email}" )
     public String getCheck(@PathVariable String email){
         List<UserRestModel> m = (List<UserRestModel>) rabbitTemplate.convertSendAndReceive("Direct", "users", "");
