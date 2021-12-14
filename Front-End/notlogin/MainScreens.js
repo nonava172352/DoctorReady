@@ -1,5 +1,6 @@
 import React from 'react';
-import {useState, useEffect } from 'react';
+import {useState, useEffect} from 'react';
+
 import {
   SafeAreaView,
   StyleSheet,
@@ -111,10 +112,10 @@ const MainScreens = ({route, navigation}) => {
         marginBottom: 7,
         backgroundColor: 'black',
         width: 370,
-        borderRadius: 15
+        borderRadius: 7
       }}>
-
-      <Text style={{fontSize: 17, padding: 15, color: "white"}} onPress={() => {
+       
+      <Text style={{fontSize: 17, padding: 15, color: "white", fontFamily: 'Prompt-Regular'}} onPress={() => {
         return(
           navigation.navigate("Toptab", {screen:"รายละเอียดโรค", params:{disease: item.disease, sympton: item.sympton, cause: item.cause, prevent: item.prevent}})
         )
@@ -126,17 +127,19 @@ const MainScreens = ({route, navigation}) => {
   };
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{backgroundColor: 'white', height: '100%'}}>
       <View style={styles.font}>
-        <Text style={{fontSize: 35, color: '#01B3CD'}}>ข้อมูลโรค</Text>
+        <Text style={{fontSize: 35, color: '#01B3CD', fontFamily: 'Prompt-Regular', }}>ข้อมูลโรค</Text>
       </View>
       <View style={{alignItems: 'center', marginBottom: 12}}>
         <Searchbar
           style={{width: 370}}
           placeholder="ค้นหาโรค"
+          inputStyle={{backgroundColor: 'white', color: 'black', fontFamily: 'Prompt-Regular'}}
           onChangeText={(text) => searchFilterFunction(text)}
           // value={search}
         />
+        
       </View>
       <View>
         <FlatList
@@ -157,6 +160,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 25,
     marginBottom: 25,
+    
+   
   },
 });
 
