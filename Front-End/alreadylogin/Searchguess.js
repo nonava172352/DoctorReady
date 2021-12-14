@@ -63,12 +63,12 @@ const Searchguess = ({route, navigation}) => {
         style={{
           marginLeft: 12,
           marginBottom: 7,
-          backgroundColor: 'black',
+          backgroundColor: '#EAEBEB',
           width: 370,
-          borderRadius: 15,
+          borderRadius: 10,
         }}>
         <Text
-          style={{fontSize: 17, padding: 15, color: 'white'}}
+          style={{fontSize: 17, padding: 15, color: 'black',fontFamily:'Prompt-Regular'}}
           onPress={() => {}}>
           {item}
         </Text>
@@ -127,7 +127,7 @@ const Searchguess = ({route, navigation}) => {
   // console.log(collect)
 
   return (
-    <SafeAreaView style={{backgroundColor: 'white'}}>
+    <SafeAreaView style={{backgroundColor: 'white', height: '100%'}}>
       <View style={styles.font}>
         <Text
           style={{
@@ -155,6 +155,10 @@ const Searchguess = ({route, navigation}) => {
             setOpen={setOpen}
             setValue={setValue}
             setItems={setItems}
+            textStyle={{
+              fontFamily: 'Prompt-Regular',
+              fontSize: 16
+            }}
             style={{
               borderWidth: 0,
               borderRadius: 5,
@@ -166,7 +170,6 @@ const Searchguess = ({route, navigation}) => {
               shadowOpacity: 0.23,
               shadowRadius: 2.62,
               elevation: 4,
-              
             }}
             dropDownContainerStyle={{
               borderWidth: 0,
@@ -190,7 +193,7 @@ const Searchguess = ({route, navigation}) => {
           value={search}
         /> */}
         <View style={{height: 44, justifyContent: 'center', marginLeft: 10}}>
-          <Button title="+" color="green" onPress={() => addArray()} />
+          <Button title="+" color="#2FF03A" onPress={() => addArray()} />
         </View>
       </View>
       <View style={{zIndex: -1}}>
@@ -199,8 +202,8 @@ const Searchguess = ({route, navigation}) => {
 
       <View>
         <View
-          style={{width: '96%', marginLeft: '2%', marginBottom: 3, zIndex: -1}}>
-          <Button
+          style={{width: '50%', marginLeft: '3%', zIndex: -1, flexDirection: 'row'}}>
+          {/* <Button
             title="search"
             color="#01B3CD"
             // onPress={() => (setFinal(Filterseacrh))}
@@ -209,18 +212,36 @@ const Searchguess = ({route, navigation}) => {
                 screen: 'SearchDetailScreen',
                 params: {collect: collect},
               });
-            }}
-          />
+            }}    
+          /> */}
+          <TouchableOpacity style={{ height: 50,width: '92%',marginRight: '4%', marginTop: 0,borderRadius: 10, backgroundColor: '#01B3CD', justifyContent: 'center', alignItems: 'center'}} onPress={() => {
+              return navigation.navigate('คาดคะเนโรค', {
+                screen: 'SearchDetailScreen',
+                params: {collect: collect},
+              });
+            }}>
+            <Text style={{fontSize: 25, color: 'white', fontFamily: 'Prompt-Regular'}}>Search</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={{ height: 50,width: '92%', marginTop: 0,borderRadius: 10, backgroundColor: 'red', justifyContent: 'center', alignItems: 'center'}} onPress={() => (
+              setCollect(''), setFilterFunction([]), setFinal([])
+            )}>
+            <Text style={{fontSize: 25, color: 'white', fontFamily: 'Prompt-Regular'}}>Clear</Text>
+          </TouchableOpacity>
         </View>
-        <View style={{width: '96%', marginLeft: '2%', zIndex: -1}}>
-          <Button
+        {/* <View style={{marginLeft: '2%', zIndex: -1}}> */}
+          {/* <Button
             title="clear"
             color="red"
             onPress={() => (
               setCollect(''), setFilterFunction([]), setFinal([])
             )}
-          />
-        </View>
+          /> */}
+          {/* <TouchableOpacity style={{ height: 50,width: '97%', marginTop: 5,borderRadius: 10, backgroundColor: 'red', justifyContent: 'center', alignItems: 'center'}} onPress={() => (
+              setCollect(''), setFilterFunction([]), setFinal([])
+            )}>
+            <Text style={{fontSize: 25, color: 'white', fontFamily: 'Prompt-Regular'}}>Clear</Text>
+          </TouchableOpacity>
+        </View> */}
       </View>
       <View style={{marginTop: 7}}>
         <FlatList data={final} renderItem={ItemView2} />
