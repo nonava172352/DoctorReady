@@ -80,7 +80,11 @@ const PersonalInfo = ({navigation}) => {
             marginBottom: 10,       
           }}
           right={props => <List.Icon {...props} icon="folder" />}
-          onPress={() => Alert.alert('Simple Button pressed')}
+          onPress={() => {
+            return(
+              navigation.navigate("Information")
+            )
+          }}
         />
       </View>
       <View
