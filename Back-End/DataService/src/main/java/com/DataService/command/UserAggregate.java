@@ -33,6 +33,8 @@ public class UserAggregate {
         UserCreatedEvent userCreatedEvent = new UserCreatedEvent();
         BeanUtils.copyProperties(createUserCommand, userCreatedEvent);
         AggregateLifecycle.apply(userCreatedEvent);
+        System.out.println("UserAggregate");
+        System.out.println(userCreatedEvent);
 
     }
     @EventSourcingHandler

@@ -31,8 +31,6 @@ public class SymptomAggregate {
         if(createSymptomCommand.getSymptom().equals("") == true){
             throw new IllegalArgumentException("Symptom == null");
         }
-        System.out.println(createSymptomCommand);
-        System.out.println("createSymptomCommand");
         SymptomCreatedEvent symptomCreatedEvent = new SymptomCreatedEvent();
         BeanUtils.copyProperties(createSymptomCommand, symptomCreatedEvent);
         AggregateLifecycle.apply(symptomCreatedEvent);

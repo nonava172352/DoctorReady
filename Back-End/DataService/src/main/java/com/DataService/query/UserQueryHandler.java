@@ -22,7 +22,6 @@ public class UserQueryHandler {
     @QueryHandler
     List<UserRestModel> AuthUsers(AuthQuery query){
         List<UserRestModel> userRest = new ArrayList<>();
-        System.out.println("AuthUsers");
         UserEntity storedUser = userRepository.findByEmail(query.getEmail());
 
         UserRestModel userRestModel = new UserRestModel();
@@ -34,7 +33,6 @@ public class UserQueryHandler {
     @QueryHandler
     List<UserRestModel> getUsers(FindUserQuery query){
         List<UserRestModel> userRest = new ArrayList<>();
-        System.out.println("getUsers");
         List<UserEntity> storeUser = userRepository.findAll();
 
         for (UserEntity userEntity : storeUser){
@@ -43,6 +41,8 @@ public class UserQueryHandler {
             userRest.add(userRestModel);
 
         }
+        System.out.println("getUsers");
+        System.out.println(userRest);
         return userRest;
     }
 

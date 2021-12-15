@@ -24,15 +24,24 @@ public class Requestandreply {
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public UserRestModel Register(@RequestBody CreateUserRestModel model) {
-        String m = (String) rabbitTemplate.convertSendAndReceive("Direct", "register", model);
         UserRestModel userRest = new UserRestModel();
         List<UserRestModel> alldata = (List<UserRestModel>) rabbitTemplate.convertSendAndReceive("Direct", "users", "");
-        for (UserRestModel i : alldata){
-            if(i.getUserID().equals(m)){
-                System.out.println(i);
-                userRest = i;
+
+        for(UserRestModel j : alldata){
+            if(j.getEmail().equals(model.getEmail())){
+                System.out.println("1");
+                return null;
             }
         }
+        String m = (String) rabbitTemplate.convertSendAndReceive("Direct", "register", model);
+
+        for (UserRestModel i : alldata){
+            if(i.getUserID().equals(m)){
+
+                userRest = i;
+            }
+        }System.out.println("2");
+
         return userRest;
     }
 

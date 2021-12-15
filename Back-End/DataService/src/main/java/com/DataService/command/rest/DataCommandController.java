@@ -39,8 +39,6 @@ public class DataCommandController {
         String result;
         try{
             result = commandGateway.sendAndWait(command);
-            System.out.println(result);
-            System.out.println(command.getUsername());
         }catch (Exception e){
             result = e.getLocalizedMessage();
         }
@@ -61,7 +59,6 @@ public class DataCommandController {
 
         try {
             result = commandGateway.sendAndWait(command);
-            System.out.println(result);
 
         }catch(Exception e){
             result = e.getLocalizedMessage();

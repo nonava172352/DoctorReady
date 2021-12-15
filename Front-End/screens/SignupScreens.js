@@ -55,7 +55,6 @@ const SignupScreens = () => {
           <TextInput
             style={styles.input}
             onChangeText={setPassword}
-            value={password}
             secureTextEntry={true}
             placeholder="Password"
           />
@@ -153,10 +152,16 @@ const SignupScreens = () => {
                 Alert.alert('รูปแบบ email ไม่ถูกต้อง')
               }else{
 
-                axios({method:"post", url:"http://192.168.1.38:8083/register", data:{email : email, password:password, username:username , name: name, weight:weight, height: height, detail: detail} }).then(
+                axios({method:"post", url:"http://192.168.1.40:8083/register", data:{email : email, password:password, username:username , name: name, weight:weight, height: height,age:age, detail: detail} }).then(
                   (response) =>{
+                    if(response.data == ""){
+                      Alert.alert("มีผู้ใช้บัญชีนี้บัญชีแล้ว")
+
+                    }else{
                     dispatch(userActionSet(response.data))
-                    console.log(response.data)
+
+                    }
+                    console.log("test: " + response.data)
                   
                   }
                 ).catch((error) => {console.log(error) 

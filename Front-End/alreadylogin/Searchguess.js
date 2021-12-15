@@ -39,18 +39,6 @@ const Searchguess = ({route, navigation}) => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([
-    {label: 'หิวบ่อย', value: 'หิวบ่อย'},
-    {label: 'เวียนศีรษะ', value: 'เวียนศีรษะ'},
-    {label: 'กระหายน้ำบ่อย', value: 'กระหายน้ำบ่อย'},
-    {label: 'กินจุ', value: 'กินจุ'},
-    {label: 'เหนื่อยง่าย', value: 'เหนื่อยง่าย'},
-    {label: 'น้ำหนักตัวเพิ่มขึ้น', value: 'น้ำหนักตัวเพิ่มขึ้น'},
-    {label: 'แผลเรื้อรังที่หายช้า', value: 'แผลเรื้อรังที่หายช้า'},
-    {label: 'ชาปลายมือปลายเท้า', value: 'ชาปลายมือปลายเท้า'},
-    {label: 'หย่อนสมรรถภาพทางเพศ', value: 'หย่อนสมรรถภาพทางเพศ'},
-    {label: 'เจ็บจุกหน้าอก', value: 'เจ็บจุกหน้าอก'},
-    {label: 'สายตามัว', value: 'สายตามัว'},
-    {label: 'คลื่นไส้', value: 'คลื่นไส้'},
   ]);
   if(check == 0){
     setCheck(1)
@@ -267,6 +255,16 @@ const Searchguess = ({route, navigation}) => {
               alignItems: 'center',
             }}
             onPress={() => {
+              console.log("===")
+              console.log(collect)
+              console.log("===")
+              axios({method:"post", url:"http://192.168.1.40:8083/arkans", data:{"arkan":collect}}).then(response =>{
+                console.log("===er")
+                console.log(response.data)
+              })
+              
+
+
               return navigation.navigate('คาดคะเนโรค', {
                 screen: 'SearchDetailScreen',
                 params: {collect: collect},
