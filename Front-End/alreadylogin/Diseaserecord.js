@@ -26,7 +26,7 @@ const Diseaserecord = ({route,navigation}) => {
   const user = useSelector((state) => state.redu.user)
   const [name, setName] = useState('');
   const [haveAfever, sethaveAfever] = useState('');
-  const [selectedLanguage, setSelectedLanguage] = useState();
+  const [selectedLanguage, setSelectedLanguage] = useState('');
   const [pain, setPain] = useState('');
   const [allergicDrug, setallergicDrug] = useState('');
   const [more, setMore] = useState('');
@@ -39,7 +39,7 @@ const Diseaserecord = ({route,navigation}) => {
       if(response.data){
         setName(response.data.symptom)
         sethaveAfever(response.data.haveFever)
-        setSelectedLanguage(response.data.setSymptomDuration)
+        setSelectedLanguage(response.data.symptomDuration)
         setPain(response.data.painPosition)
         setallergicDrug(response.data.drugAllergy)
         setMore(response.data.more)
@@ -120,7 +120,7 @@ const Diseaserecord = ({route,navigation}) => {
               axios({method:"post", url:"http://192.168.1.40:8083/symptom",
               data:{
                 symptom:name,
-                symptomDuration:setSelectedLanguage ,
+                symptomDuration:selectedLanguage ,
                 haveFever:haveAfever,
                 painPosition:pain,
                 drugAllergy:allergicDrug,
@@ -129,6 +129,7 @@ const Diseaserecord = ({route,navigation}) => {
             }}).then((response) =>{
               if(response.data){
                 console.log(response.data)
+                console.log(selectedLanguage)
                 Alert.alert('บันทึกเรียบร้อยแล้ว')    
               }else{
                 Alert.alert('ไม่สามารถติดต่อกับฐานข้อมูลได้:)')

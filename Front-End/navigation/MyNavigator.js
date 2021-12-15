@@ -262,7 +262,7 @@ export default function MyNavigator() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.redu.user);
   console.log(user)
-  dispatch(userActionSet('sds'));
+  // dispatch(userActionSet('sds'));
   if (user != null) {
   return (
     <NavigationContainer>

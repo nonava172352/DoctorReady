@@ -35,7 +35,11 @@ const SearchDetail = ({route, navigation}) => {
   return (
     <SafeAreaView>
       <View style={styles.Headers}>
-        <Text style={{fontSize: 35}}>โรคที่ตรงกับอาการ</Text>
+        <Text style={{
+            fontSize: 35,
+            color: '#01B3CD',
+            fontFamily: 'Prompt-Regular',
+          } }>โรคที่ตรงกับอาการ</Text>
       </View>
       <View style={styles.head}>
       <FlatList data={test(disease)} renderItem={({item}) =>{
@@ -44,11 +48,11 @@ const SearchDetail = ({route, navigation}) => {
           <TouchableOpacity
           style={{
             marginBottom: 7,
-            backgroundColor: 'blue',
+            backgroundColor: '#51E2D8',
             width: 370,
             borderRadius: 7
           }}>
-        <Text>{item}</Text>
+        <Text style={{fontSize: 17, padding: 15, color: "white", fontFamily: 'Prompt-Regular'}}>{item}</Text>
         </TouchableOpacity>
         )
       }}>
