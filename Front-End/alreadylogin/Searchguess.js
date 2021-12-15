@@ -25,8 +25,6 @@ axios.defaults.timeout = 1000;
 
 import DropDownPicker from 'react-native-dropdown-picker';
 
-import SearchableDropdown from 'react-native-searchable-dropdown';
-
 const Searchguess = ({route, navigation}) => {
   const [selectedId, setSelectedId] = useState(null);
 
@@ -39,6 +37,8 @@ const Searchguess = ({route, navigation}) => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([
+    {label: 'หิวบ่อย', value: 'หิวบ่อย'},
+    {label: 'เวียนศีรษะ', value: 'เวียนศีรษะ'},
   ]);
   if(check == 0){
     setCheck(1)
@@ -66,6 +66,7 @@ const Searchguess = ({route, navigation}) => {
 
   const ItemView = ({item}) => {
     return (
+      
       <TouchableOpacity
         style={{
           marginLeft: 12,
@@ -75,16 +76,12 @@ const Searchguess = ({route, navigation}) => {
           borderRadius: 10,
         }}>
         <Text
-          style={{
-            fontSize: 17,
-            padding: 15,
-            color: 'black',
-            fontFamily: 'Prompt-Regular',
-          }}
+          style={{fontSize: 17, padding: 15, color: 'black',fontFamily:'Prompt-Regular'}}
           onPress={() => {}}>
           {item}
         </Text>
       </TouchableOpacity>
+      
     );
   };
 
@@ -152,61 +149,52 @@ const Searchguess = ({route, navigation}) => {
       </View>
       <View
         style={{
+          alignItems: 'center',
           flexDirection: 'row',
-          width: '85%',
-          marginLeft: '4%',
+          justifyContent: 'center',
+          fontSize: 1,
           marginBottom: 10,
-          
         }}>
-        {/* <ScrollView> */}
-        <DropDownPicker
-          // nestedScrollEnabled={true}
-          searchable={true}
-          searchablePlaceholder="ค้นหาอาการ"
-          searchableError={() => <Text fontSize={16}>Not found</Text>}
-          searchableStyle={{fontSize: 18, borderWidth: 0}}
-          dropDownMaxHeight={1000}
-          dropDownStyle={{ backgroundColor: 'black', height: '100%' }}
-          placeholder="โปรดเลือกอาการอย่างน้อย 1 อาการ"
-          open={open}
-          value={value}
-          items={items}
-          setOpen={setOpen}
-          setValue={setValue}
-          setItems={setItems}
-          textStyle={{
-            fontFamily: 'Prompt-Regular',
-            fontSize: 16,
-          }}
-          style={{
-            position: 'relative',
-            borderWidth: 0,
-            borderRadius: 5,
-            shadowColor: '#000',
-            shadowOffset: {
-              width: 0,
-              height: 2,
-            },
-            shadowOpacity: 0.23,
-            shadowRadius: 2.62,
-            elevation: 4,
-          }}
-          dropDownContainerStyle={{
-            borderWidth: 0,
-            borderRadius: 5,
-            shadowColor: '#000',
-            shadowOffset: {
-              width: 0,
-              height: 2,
-            },
-            shadowOpacity: 0.23,
-            shadowRadius: 2.62,
-            elevation: 4,
-          }}
-        />
-        
-        {/* </ScrollView> */}
-
+        <View style={{width: '85%'}}>
+          <DropDownPicker
+            placeholder="โปรดเลือกอาการอย่างน้อย 1 อาการ"
+            open={open}
+            value={value}
+            items={items}
+            setOpen={setOpen}
+            setValue={setValue}
+            setItems={setItems}
+            textStyle={{
+              fontFamily: 'Prompt-Regular',
+              fontSize: 16
+            }}
+            style={{
+              borderWidth: 0,
+              borderRadius: 5,
+              shadowColor: '#000',
+              shadowOffset: {
+                width: 0,
+                height: 2,
+              },
+              shadowOpacity: 0.23,
+              shadowRadius: 2.62,
+              elevation: 4,
+            }}
+            dropDownContainerStyle={{
+              borderWidth: 0,
+              borderRadius: 5,
+              shadowColor: '#000',
+              shadowOffset: {
+                width: 0,
+                height: 2,
+              },
+              shadowOpacity: 0.23,
+              shadowRadius: 2.62,
+              elevation: 4,
+              
+            }}
+          />
+        </View>
         {/* <Searchbar
           style={{width: 300}}
           placeholder="โปรดใส่อาการ"
@@ -217,21 +205,15 @@ const Searchguess = ({route, navigation}) => {
           <Button title="+" color="#2FF03A" onPress={() => addArray()} />
         </View>
       </View>
-
       <ScrollView style={{zIndex: -1}}>
-        <View style={{zIndex: -1}}>
-          <FlatList data={collect} renderItem={ItemView} />
-        </View>
+      <View style={{zIndex: -1}}>
+        <FlatList data={collect} renderItem={ItemView} />
+      </View>
       </ScrollView>
 
       <View>
         <View
-          style={{
-            width: '50%',
-            marginLeft: '3%',
-            zIndex: -1,
-            flexDirection: 'row',
-          }}>
+          style={{width: '50%', marginLeft: '3%', zIndex: -1, flexDirection: 'row'}}>
           {/* <Button
             title="search"
             color="#01B3CD"
@@ -243,74 +225,29 @@ const Searchguess = ({route, navigation}) => {
               });
             }}    
           /> */}
-          <TouchableOpacity
-            style={{
-              height: 50,
-              width: '92%',
-              marginRight: '4%',
-              marginTop: 0,
-              borderRadius: 10,
-              backgroundColor: '#01B3CD',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-            onPress={() => {
-              console.log("===")
-              console.log(collect)
-              console.log("===")
-              axios({method:"post", url:"http://192.168.1.40:8083/arkans", data:{"arkan":collect}}).then(response =>{
-                console.log("===er")
-                console.log(response.data)
-              })
-              
-
-
+          <TouchableOpacity style={{ height: 50,width: '92%',marginRight: '4%', marginTop: 0,borderRadius: 10, backgroundColor: '#01B3CD', justifyContent: 'center', alignItems: 'center'}} onPress={() => {
               return navigation.navigate('คาดคะเนโรค', {
                 screen: 'SearchDetailScreen',
                 params: {collect: collect},
               });
             }}>
-            <Text
-              style={{
-                fontSize: 25,
-                color: 'white',
-                fontFamily: 'Prompt-Regular',
-              }}>
-              ค้นหา
-            </Text>
+            <Text style={{fontSize: 25, color: 'white', fontFamily: 'Prompt-Regular'}}>ค้นหา</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            style={{
-              height: 50,
-              width: '92%',
-              marginTop: 0,
-              borderRadius: 10,
-              backgroundColor: 'red',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-            onPress={() => (
+          <TouchableOpacity style={{ height: 50,width: '92%', marginTop: 0,borderRadius: 10, backgroundColor: 'red', justifyContent: 'center', alignItems: 'center'}} onPress={() => (
               setCollect(''), setFilterFunction([]), setFinal([])
             )}>
-            <Text
-              style={{
-                fontSize: 25,
-                color: 'white',
-                fontFamily: 'Prompt-Regular',
-              }}>
-              ล้าง
-            </Text>
+            <Text style={{fontSize: 25, color: 'white', fontFamily: 'Prompt-Regular'}}>ล้าง</Text>
           </TouchableOpacity>
         </View>
         {/* <View style={{marginLeft: '2%', zIndex: -1}}> */}
-        {/* <Button
+          {/* <Button
             title="clear"
             color="red"
             onPress={() => (
               setCollect(''), setFilterFunction([]), setFinal([])
             )}
           /> */}
-        {/* <TouchableOpacity style={{ height: 50,width: '97%', marginTop: 5,borderRadius: 10, backgroundColor: 'red', justifyContent: 'center', alignItems: 'center'}} onPress={() => (
+          {/* <TouchableOpacity style={{ height: 50,width: '97%', marginTop: 5,borderRadius: 10, backgroundColor: 'red', justifyContent: 'center', alignItems: 'center'}} onPress={() => (
               setCollect(''), setFilterFunction([]), setFinal([])
             )}>
             <Text style={{fontSize: 25, color: 'white', fontFamily: 'Prompt-Regular'}}>Clear</Text>
