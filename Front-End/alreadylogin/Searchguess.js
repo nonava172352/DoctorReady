@@ -34,20 +34,18 @@ const Searchguess = ({route, navigation}) => {
   const [check, setCheck] =  useState(0)
   const [Filterseacrh, setFilterFunction] = useState([]);
   const [final, setFinal] = useState([]);
-  const [count, setCount] = useState(0);
   const [collect, setCollect] = useState([]);
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
-  const [items, setItems] = useState([
-  ]);
+  const [items, setItems] = useState([]);
+  const [ans, setAns] = useState([])
   if(check == 0){
     setCheck(1)
   axios.get("http://192.168.1.40:8083/allarkarn").then(response =>{
     let data = response.data;
-      let list = []
+      var list = []
       for(var i = 0; i < data.length; i++ ){
         list.push(new select(data[i], data[i]))
-        
       }
       setItems(list)
   })
@@ -56,9 +54,7 @@ const Searchguess = ({route, navigation}) => {
   const addArray = () => {
     if (value != null) {
       setCollect([...collect, value]);
-      console.log(collect);
       setValue(null);
-      searchFil(collect);
     } else {
       setValue(null);
     }
@@ -107,36 +103,39 @@ const Searchguess = ({route, navigation}) => {
     );
   };
 
-  // console.log(Filterseacrh);
-  const searchFil = collect => {
-    // console.log(collect.length)
-    // console.log(listdi[0].findsympton[1])
-    for (var i = 0; i < collect.length; i++) {
-      for (var k = 0; k < listdi.length; k++) {
-        for (var f = 0; f < listdi[k].findsympton.length; f++) {
-          if (collect[i] === listdi[k].findsympton[f]) {
-            setFilterFunction([...Filterseacrh, listdi[k]]);
-          }
-        }
-      }
-    }
-    // if (collect) {
-    //   const newData = collect.filter(function (item) {
-    //     const itemData = item.disease
-    //       // ? item.disease.toUpperCase()
-    //       // : ''.toUpperCase();
-    //     const collectData = collect;
-    //     return itemData.indexOf(collectData) > -1;
-    //   });
-    //   setFilterFunction(newData);
-    //   // setSearch(collect);
-    // } else {
-    //   setFilterFunction(collect);
-    //   // setSearch(collect);
-    // }
-  };
+  // const searchFil = collect => {
+  //   for (var i = 0; i < collect.length; i++) {
+  //     for (var k = 0; k < listdi.length; k++) {
+  //       for (var f = 0; f < listdi[k].findsympton.length; f++) {
+          
+  //         if (collect[i] === listdi[k].findsympton[f]) {
+  //           setFilterFunction([...Filterseacrh, listdi[k]]);
+  //         }
+  //       }
+  //     }
+  //   }
+  //   // if (collect) {
+  //   //   const newData = collect.filter(function (item) {
+  //   //     const itemData = item.disease
+  //   //       // ? item.disease.toUpperCase()
+  //   //       // : ''.toUpperCase();
+  //   //     const collectData = collect;
+  //   //     return itemData.indexOf(collectData) > -1;
+  //   //   });
+  //   //   setFilterFunction(newData);
+  //   //   // setSearch(collect);
+  //   // } else {
+  //   //   setFilterFunction(collect);
+  //   //   // setSearch(collect);
+  //   // }
+  // };
 
   // console.log(collect)
+  const process= ()=>{
+    axios({method:"post", url:"http://192.168.1.40:8083/arkans", data:{"arkan":collect}}).then(response =>{
+      setAns(response.data)
+    })
+  }
 
   return (
     <SafeAreaView style={{backgroundColor: 'white', height: '100%'}}>
@@ -167,7 +166,7 @@ const Searchguess = ({route, navigation}) => {
           searchableStyle={{fontSize: 18, borderWidth: 0}}
           dropDownMaxHeight={1000}
           dropDownStyle={{ backgroundColor: 'black', height: '100%' }}
-          placeholder="โปรดเลือกอาการอย่างน้อย 1 อาการ"
+          placeholder="โปรดเลือกอาการอย่างน้อย 3 อาการ"
           open={open}
           value={value}
           items={items}
@@ -255,20 +254,17 @@ const Searchguess = ({route, navigation}) => {
               alignItems: 'center',
             }}
             onPress={() => {
-              console.log("===")
-              console.log(collect)
-              console.log("===")
-              axios({method:"post", url:"http://192.168.1.40:8083/arkans", data:{"arkan":collect}}).then(response =>{
-                console.log("===er")
-                console.log(response.data)
-              })
-              
+              if(collect.length > 2){
+                process()
 
+                return navigation.navigate('คาดคะเนโรค', {
+                  screen: 'SearchDetailScreen',
+                  params: {collect: ans},
+                });
+              }else{
+                Alert.alert("กรุณาเลือกอาการให้ครบ 3 อาการ")
+              }
 
-              return navigation.navigate('คาดคะเนโรค', {
-                screen: 'SearchDetailScreen',
-                params: {collect: collect},
-              });
             }}>
             <Text
               style={{
@@ -289,9 +285,11 @@ const Searchguess = ({route, navigation}) => {
               justifyContent: 'center',
               alignItems: 'center',
             }}
-            onPress={() => (
-              setCollect(''), setFilterFunction([]), setFinal([])
-            )}>
+            onPress={() => {
+                  setCollect(''), setFilterFunction([]), setFinal([])
+
+
+            }}>
             <Text
               style={{
                 fontSize: 25,

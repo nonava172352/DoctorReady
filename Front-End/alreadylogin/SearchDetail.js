@@ -14,24 +14,50 @@ import {
   StatusBar,
 } from 'react-native';
 import {Searchbar} from 'react-native-paper';
+const test = (disease) => {
+  // let list_value = []
+  const list_key= []
+  disease.forEach(element => {
+    list_key.push((Object.keys(element))[0])
+    // list_value.push((Object.values(element))[0])
+  });
+  console.log(list_key)
+  return list_key
+  
 
+}
 
 const SearchDetail = ({route, navigation}) => {
   const [selectedId, setSelectedId] = useState(null);
   const [search, setSearch] = useState('');
+  const [disease, setDisease] = useState(route.params.collect)
 
-  console.log(route.params.collect)
   return (
     <SafeAreaView>
       <View style={styles.Headers}>
         <Text style={{fontSize: 35}}>โรคที่ตรงกับอาการ</Text>
       </View>
       <View style={styles.head}>
-        <Text style={{fontSize: 25}}>{route.params.collect}</Text>
+      <FlatList data={test(disease)} renderItem={({item}) =>{
+        
+        return(
+          <TouchableOpacity
+          style={{
+            marginBottom: 7,
+            backgroundColor: 'blue',
+            width: 370,
+            borderRadius: 7
+          }}>
+        <Text>{item}</Text>
+        </TouchableOpacity>
+        )
+      }}>
+
+      </FlatList>
+
       </View>
       
       <View>
-          {/* เเสดงข้อมูลโรคที่ตรงกับอาการ */}
       </View>
       
     </SafeAreaView>

@@ -1,15 +1,18 @@
 import listdisease from '../models/listdisease';
 import axios from 'axios';
+import React from 'react';
+import {useState, useEffect} from 'react';
 axios.defaults.timeout = 1000;
 export const listdi = [];
 
 axios.get("http://192.168.1.40:8083/disease").then(response =>{
   let data = response.data;
-  for(var i = 0;i < data.length;i++){
+  for(var i = 0;i < 10;i++){
     listdi.push(new listdisease(data[i].name, data[i].symptom, data[i].information, data[i].cause, data[i].prevent, data[i].findsympton, data[i].treatment))
 
   }
 })
+console.log(listdi[0])
 
 
 //   new listdisease(
