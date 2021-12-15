@@ -20,14 +20,8 @@ import axios from 'axios';
 import select from "../models/select"
 
 axios.defaults.timeout = 1000;
-const [item, setItem] = useState([])
-axios.get("http://192.168.1.40:8083/allarkarn").then(response =>{
-  let data = response.data;
-    for(var i = 0; i < data.length; i++ ){
-      setItem([...item, data[i]])
-    }
-    console.log(item)
-})
+
+
 import DropDownPicker from 'react-native-dropdown-picker';
 
 const Searchguess = ({route, navigation}) => {
@@ -38,6 +32,7 @@ const Searchguess = ({route, navigation}) => {
   const [Filterseacrh, setFilterFunction] = useState([]);
   const [final, setFinal] = useState([]);
   const [count, setCount] = useState(0);
+  const [item, setItem] = useState([]);
   const [collect, setCollect] = useState([]);
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
@@ -45,7 +40,15 @@ const Searchguess = ({route, navigation}) => {
     {label: 'หิวบ่อย', value: 'หิวบ่อย'},
     {label: 'เวียนศีรษะ', value: 'เวียนศีรษะ'},
   ]);
-
+  axios.get("http://192.168.1.40:8083/allarkarn").then(response =>{
+    let data = response.data;
+    
+      for(var i = 0; i < data.length; i++ ){
+        console.log(data[i])
+        setItem([data[i]])
+      }
+      console.log(item)
+  })
   const addArray = () => {
     if (value != null) {
       setCollect([...collect, value]);

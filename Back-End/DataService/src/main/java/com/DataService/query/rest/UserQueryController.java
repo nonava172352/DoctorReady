@@ -38,6 +38,7 @@ public class UserQueryController {
     public List<SymptomRestModel> getSymptom(){
         FindSymptomQuery findSymptomQuery = new FindSymptomQuery();
         List<SymptomRestModel> symptom = queryGateway.query(findSymptomQuery, ResponseTypes.multipleInstancesOf(SymptomRestModel.class)).join();
+        System.out.println(symptom);
         return symptom;
     }
 //    public List<UserRestModel> AuthLogin(){

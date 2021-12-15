@@ -1,5 +1,5 @@
 import React from 'react';
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -10,20 +10,19 @@ import {
   Button,
   TouchableOpacity,
   Alert,
-  ScrollView,
-  Platform
+  ScrollView
 } from 'react-native';
-import DatePicker from 'react-native-datepicker'
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {Picker} from '@react-native-picker/picker';
 import axios from 'axios';
 axios.defaults.timeout = 1000;
-import DateTimePicker from '@react-native-community/datetimepicker';
 
 import { useSelector, useDispatch } from "react-redux";
 import { diseActionSet, userActionSet } from "../store/action/actions"
+
 const Diseaserecord = () => {
+  const [check, setCheck] = React.useState(0);
   const user = useSelector((state) => state.redu.user)
   const [name, setName] = React.useState('');
   const [haveAfever, sethaveAfever] = React.useState('');
@@ -31,64 +30,27 @@ const Diseaserecord = () => {
   const [pain, setPain] = React.useState('');
   const [allergicDrug, setallergicDrug] = React.useState('');
   const [more, setMore] = React.useState('');
-  axios({method:"get", url:`http://192.168.1.38:8083/getSymtom/${user.email}` }).then((response) =>{
-    if(response.data){
-      setName(response.data.symptom)
-      sethaveAfever(response.data.haveFever)
-      setSelectedLanguage(response.data.setSymptomDuration)
-      setPain(response.data.painPosition)
-      setallergicDrug(response.data.drugAllergy)
-      setMore(response.data.more)
-    }
-  })
+  if(check == 0){
+    setCheck(1)
+    axios({method:"get", url:`http://192.168.1.40:8083/getSymtom/${user.email}` }).then((response) =>{
 
-  const [currentDate, setCurrentData] = useState('');
-  // console.log(currentDate);
-  const [date, setDate] = useState(new Date());
-  const [mode, setMode] = useState('date');
-  const [show, setShow] = useState(false);
+      if(response.data){
+        setName(response.data.symptom)
+        sethaveAfever(response.data.haveFever)
+        setSelectedLanguage(response.data.setSymptomDuration)
+        setPain(response.data.painPosition)
+        setallergicDrug(response.data.drugAllergy)
+        setMore(response.data.more)
+      }
+    })
+  }
 
-  const [gettime, setGettime] = useState([]);
-
-  const onChange = (event, selectedDate) => {
-    const currentDate = selectedDate || date;
-    setShow(Platform.OS === 'ios');
-    setDate(currentDate);
-  };
-
-  const showMode = (currentMode) => {
-    setShow(true);
-    setMode(currentMode);
-  };
-
-  const showDatepicker = () => {
-    showMode('date');
-  };
-
-  const showTimepicker = () => {
-    showMode('time');
-  };
-
-  useEffect(() => {
-    var date = new Date().getDate(); //Current Date
-    var month = new Date().getMonth() + 1; //Current Month
-    var year = new Date().getFullYear(); //Current Year
-    var hours = new Date().getHours(); //Current Hours
-    var min = new Date().getMinutes(); //Current Minutes
-    var sec = new Date().getSeconds(); //Current Seconds
-    setCurrentData(
-      date + '/' + month + '/' + year + ' ' + hours + ':' + min + ':' + sec
-    );
-  }, [])
   return (
     <SafeAreaView style={styles.container}>
       <Text style={{fontSize: 35, paddingBottom: 20, paddingTop: 20}}>บันทึกอาการ</Text>
       <ScrollView>
-
-        <Text style={{fontSize: 12, marginLeft: '10%'}}>วันที่เเละเวลาปัจจุบัน {currentDate}</Text>  
-
-        <Text style={styles.font}>หัวข้ออาการ</Text>
-        <TextInput style={styles.input} />
+        <Text style={styles.font} >หัวข้ออาการ</Text>
+        <TextInput style={styles.input} onChangeText={setName} value={name}/>
 
         <Text style={styles.font}>ระยะเวลาของอาการ</Text>
         <Picker
@@ -103,7 +65,6 @@ const Diseaserecord = () => {
           <Picker.Item label="มากกว่า 14 วัน" value="มากกว่า 14 วัน" />
         </Picker>
 
-        
 
         <Text style={styles.font}>มีไข้ไหม</Text>
         <TextInput style={styles.input} onChangeText={sethaveAfever} value={haveAfever}/>
@@ -116,24 +77,6 @@ const Diseaserecord = () => {
 
         <Text style={styles.font}>อาการเพิ่มเติม</Text>
         <TextInput style={styles.input} onChangeText={setMore} value={more} />
-        <TextInput style={styles.input} />
-
-        <View>
-        <Button onPress={showDatepicker} title="Show date picker!" />
-      </View>
-      <View>
-        <Button onPress={showTimepicker} title="Show time picker!" />
-      </View>
-      {show && (
-        <DateTimePicker
-          testID="dateTimePicker"
-          value={date}
-          mode={mode}
-          is24Hour={true}
-          display="default"
-          onChange={onChange}
-        />
-      )}
       </ScrollView>
       <ScrollView style={{width: 70, marginTop: 12}}>
         <Button
@@ -158,7 +101,6 @@ const Diseaserecord = () => {
             }
         })    
           }}
-          onPress={() => setGettime(date)}
         />
       </ScrollView>
     </SafeAreaView>

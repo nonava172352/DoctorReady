@@ -17,8 +17,7 @@ import {
 import {Searchbar, List} from 'react-native-paper';
 
 const Sympton = ({route, navigation}) => {
-  console.log("===2")
-  console.log(route.params)
+
   return (
     <ScrollView>
       <View style={styles.font}>

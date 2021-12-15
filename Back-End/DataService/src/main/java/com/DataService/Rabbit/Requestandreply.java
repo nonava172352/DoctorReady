@@ -113,13 +113,14 @@ public class Requestandreply {
         System.out.println(email);
         List<SymptomRestModel> m = (List<SymptomRestModel>) rabbitTemplate.convertSendAndReceive("Direct", "getsymp", "");
         SymptomRestModel result = null;
-        for(SymptomRestModel s: m){
-            if(s.getEmail().equals(email)){
-                result = s;
+        for(int i = m.size()-1;0<=i; i--){
+            if(m.get(i).getEmail().equals(email)){
+
+                result = m.get(i);
                 break;
             }
-
         }
+        System.out.println(result);
 
         return result;
 
