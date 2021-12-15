@@ -20,6 +20,7 @@ import Prevent from '../component/Prevent';
 import Cause from '../component/Cause';
 import { useSelector, useDispatch } from "react-redux";
 import { diseActionSet, userActionSet } from "../store/action/actions"
+import Information from '../alreadylogin/Information';
 
 const MainNavigator = createNativeStackNavigator();
 
@@ -180,6 +181,33 @@ function loginNavigator() {
   );
 }
 
+function Personal () {
+  return (
+    <MainNavigator.Navigator
+    initialRouteName="Personal"
+      screenOptions={{
+          headerShown: false,
+        }}>
+        <MainNavigator.Screen
+        name="Personal"
+        component={loginNavigator}>
+        </MainNavigator.Screen>
+        <MainNavigator.Screen
+        name="LogOut"
+        component={signup}>
+        </MainNavigator.Screen>
+        <MainNavigator.Screen
+        name="Diseaserecord"
+        component={Diseaserecord}>
+        </MainNavigator.Screen>
+        <MainNavigator.Screen
+        name="Information"
+        component={Information}>
+        </MainNavigator.Screen>
+    </MainNavigator.Navigator>
+  )
+}
+
 function searchscreen() {
   return (
     <MainNavigator.Navigator
@@ -201,28 +229,7 @@ function searchscreen() {
 
 
 
-function Personal () {
-  return (
-    <MainNavigator.Navigator
-    initialRouteName="Personal"
-      screenOptions={{
-          headerShown: false,
-        }}>
-        <MainNavigator.Screen
-        name="Personal"
-        component={loginNavigator}>
-        </MainNavigator.Screen>
-        <MainNavigator.Screen
-        name="LogOut"
-        component={signup}>
-        </MainNavigator.Screen>
-        <MainNavigator.Screen
-        name="Diseaserecord"
-        component={Diseaserecord}>
-        </MainNavigator.Screen>
-    </MainNavigator.Navigator>
-  )
-}
+
 
 
 function signup () { 
