@@ -29,37 +29,36 @@ const Disease = ({route, navigation}) => {
     
   }
   return (
-    <ScrollView>
+    <ScrollView style={{height: '100%', backgroundColor: 'white'}}>
       <View style={styles.font}>
-        <Text style={{fontSize: 35, fontWeight: '600', color: 'white'}}>ข้อมูลโรค</Text>
+        <Text style={{fontSize: 35, fontWeight: '600', color: 'white',fontFamily: 'Prompt-Regular'}}>ข้อมูลโรค</Text>
       </View>
       <View style={{marginLeft: 15, width: '94%', marginBottom: 25}}>
         <View style={{marginBottom: 15}}>
-          <Text style={{fontSize: 27, fontWeight: '600',}}>{route.params.disease}</Text>
+          <Text style={{fontSize: 27, fontWeight: '600',fontFamily: 'Prompt-Regular', color: '#30BEB4'}}>{route.params.disease}</Text>
         </View>
         <View>
-          <Text style={{fontSize: 15}}>
-          {symptom_text(route.params.sympton)}
-          
+          <Text style={{fontSize: 15, fontFamily: 'Prompt-Regular'}}>
+          {route.params.sympton}
           </Text>
         </View>
       </View>
       <View style={{marginLeft: 15, width: '94%', marginBottom: 25}}>
         <View style={{marginBottom: 15}}>
-          <Text style={{fontSize: 27, fontWeight: '600',}}>สาเหตุ</Text>
+          <Text style={{fontSize: 27, fontWeight: '600',fontFamily: 'Prompt-Regular', color: '#30BEB4'}}>สาเหตุ</Text>
         </View>
         <View>
-          <Text style={{fontSize: 15}}>
+          <Text style={{fontSize: 15, fontFamily: 'Prompt-Regular'}}>
           {route.params.cause}
           </Text>
         </View>
       </View>
       <View style={{marginLeft: 15, width: '94%', marginBottom: 25}}>
         <View style={{marginBottom: 15}}>
-          <Text style={{fontSize: 27, fontWeight: '600',}}>หลักการป้องกันโรค</Text>
+          <Text style={{fontSize: 27, fontWeight: '600',fontFamily: 'Prompt-Regular', color: '#30BEB4'}}>หลักการป้องกันโรค</Text>
         </View>
         <View>
-          <Text style={{fontSize: 15}}>
+          <Text style={{fontSize: 15, fontFamily: 'Prompt-Regular'}}>
           {route.params.prevent}
           </Text>
         </View>

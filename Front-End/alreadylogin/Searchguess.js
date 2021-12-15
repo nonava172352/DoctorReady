@@ -12,6 +12,7 @@ import {
   Alert,
   FlatList,
   StatusBar,
+  ScrollView,
 } from 'react-native';
 import {Searchbar, List} from 'react-native-paper';
 import {listdi} from '../data/disease-data';
@@ -62,6 +63,7 @@ const Searchguess = ({route, navigation}) => {
 
   const ItemView = ({item}) => {
     return (
+      
       <TouchableOpacity
         style={{
           marginLeft: 12,
@@ -76,6 +78,7 @@ const Searchguess = ({route, navigation}) => {
           {item}
         </Text>
       </TouchableOpacity>
+      
     );
   };
 
@@ -199,9 +202,11 @@ const Searchguess = ({route, navigation}) => {
           <Button title="+" color="#2FF03A" onPress={() => addArray()} />
         </View>
       </View>
+      <ScrollView style={{zIndex: -1}}>
       <View style={{zIndex: -1}}>
         <FlatList data={collect} renderItem={ItemView} />
       </View>
+      </ScrollView>
 
       <View>
         <View
@@ -223,12 +228,12 @@ const Searchguess = ({route, navigation}) => {
                 params: {collect: collect},
               });
             }}>
-            <Text style={{fontSize: 25, color: 'white', fontFamily: 'Prompt-Regular'}}>Search</Text>
+            <Text style={{fontSize: 25, color: 'white', fontFamily: 'Prompt-Regular'}}>ค้นหา</Text>
           </TouchableOpacity>
           <TouchableOpacity style={{ height: 50,width: '92%', marginTop: 0,borderRadius: 10, backgroundColor: 'red', justifyContent: 'center', alignItems: 'center'}} onPress={() => (
               setCollect(''), setFilterFunction([]), setFinal([])
             )}>
-            <Text style={{fontSize: 25, color: 'white', fontFamily: 'Prompt-Regular'}}>Clear</Text>
+            <Text style={{fontSize: 25, color: 'white', fontFamily: 'Prompt-Regular'}}>ล้าง</Text>
           </TouchableOpacity>
         </View>
         {/* <View style={{marginLeft: '2%', zIndex: -1}}> */}

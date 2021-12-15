@@ -47,7 +47,17 @@ function NotloginNavigator() {
           <View>
             <Image source={{uri:'https://cdn-icons-png.flaticon.com/512/295/295128.png'}} style={{height: 32, width:32, marginTop:5 }} />
           </View>
-        )}}/>
+        )
+        
+      }}
+      // listeners={({ navigation, route }) => ({
+      //   tabPress: () => {
+      //     return(       
+      //       navigation.navigate("toLogin")
+      //     )
+      //   },
+      // })}
+        />
       <Bottomtab.Screen
         name="หน้าหลัก"
         component={Topstack}
@@ -239,7 +249,6 @@ function signup () {
 export default function MyNavigator() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.redu.user);
-  // dispatch(userActionSet('test'))
   console.log(user)
   if (user != null) {
   return (
