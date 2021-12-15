@@ -21,6 +21,7 @@ import Cause from '../component/Cause';
 import { useSelector, useDispatch } from "react-redux";
 import { diseActionSet, userActionSet } from "../store/action/actions"
 import Information from '../alreadylogin/Information';
+import Dooarkan from '../alreadylogin/Dooarkan';
 
 const MainNavigator = createNativeStackNavigator();
 
@@ -205,6 +206,10 @@ function Personal () {
         name="Information"
         component={Information}>
         </MainNavigator.Screen>
+        <MainNavigator.Screen
+        name="Dooarkan"
+        component={Dooarkan}>
+        </MainNavigator.Screen>
     </MainNavigator.Navigator>
   )
 }
@@ -257,6 +262,7 @@ export default function MyNavigator() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.redu.user);
   console.log(user)
+  dispatch(userActionSet('sds'));
   if (user != null) {
   return (
     <NavigationContainer>
