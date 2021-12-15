@@ -29,11 +29,10 @@ const Searchguess = ({route, navigation}) => {
   const [selectedId, setSelectedId] = useState(null);
 
   // const [search, setSearch] = useState(null);
-
+  const [check, setCheck] =  useState(0)
   const [Filterseacrh, setFilterFunction] = useState([]);
   const [final, setFinal] = useState([]);
   const [count, setCount] = useState(0);
-  const [item, setItem] = useState([]);
   const [collect, setCollect] = useState([]);
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
@@ -41,15 +40,19 @@ const Searchguess = ({route, navigation}) => {
     {label: 'หิวบ่อย', value: 'หิวบ่อย'},
     {label: 'เวียนศีรษะ', value: 'เวียนศีรษะ'},
   ]);
+  if(check == 0){
+    setCheck(1)
   axios.get("http://192.168.1.40:8083/allarkarn").then(response =>{
     let data = response.data;
-    
+      let list = []
       for(var i = 0; i < data.length; i++ ){
-        console.log(data[i])
-        setItem([data[i]])
+        list.push(new select(data[i], data[i]))
+        
       }
-      console.log(item)
+      setItems(list)
   })
+  }
+
   const addArray = () => {
     if (value != null) {
       setCollect([...collect, value]);

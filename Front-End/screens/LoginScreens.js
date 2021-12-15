@@ -105,7 +105,7 @@ const LoginScreens = ({navigation}) => {
             } else {
               axios({
                 method: 'post',
-                url: 'http://192.168.1.38:8083/login',
+                url: 'http://192.168.1.40:8083/login',
                 data: {email: email, password: password},
               }).then(response => {
                 if (response.data) {
